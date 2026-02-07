@@ -40,7 +40,7 @@
     
 -   Every row has two columns — each a different attribute of the book (book title and author).
     
--   In today’s information age, we can store our tables using software like Google Sheets instead of paper![📝](https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4dd.png) or stone tablets![🪨](https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1faa8.png). However, in this course we will talk about databases and not spreadsheets.
+-   In today’s information age, we can store our tables using software like Google Sheets instead of paper! or stone tablets!. However, in this course we will talk about databases and not spreadsheets.
     
 -   Three reasons to move beyond spreadsheets to databases are
     
