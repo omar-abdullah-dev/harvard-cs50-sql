@@ -78,6 +78,32 @@ WHERE id = (
 );
 
 -- *** The Devious Delivery ***
+--     from: NULL
+--     to: ???
+
+/* Step 1: Find package with no sender address */
+--         - id: 5098
+--         - content: Duck debugger
+--         - to_address_id : 50
+SELECT "id","contents" FROM "packages"
+WHERE "from_address_id" IS NULL;
+
+/* Step 1: Find package with no sender address */
+SELECT "scans"."address_id", "scans"."action" FROM "scans"
+WHERE "package_id" =(
+    SELECT "id" from "packages" WHERE "from_address_id" IS NULL
+)ORDER BY "timestamp" DESC
+LIMIT 1;
+
+/* Step 3: Get final delivery address and type */
+SELECT "address","type" FROM "addresses"
+WHERE id =(
+    SELECT "scans"."address_id" FROM "scans"
+    WHERE "package_id" =(
+        SELECT "packages"."id" from "packages" WHERE "from_address_id" IS NULL
+    )ORDER BY "timestamp" DESC
+    LIMIT 1
+);
 
 -- *** The Forgotten Gift ***
 
