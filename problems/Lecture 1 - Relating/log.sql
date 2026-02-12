@@ -106,4 +106,66 @@ WHERE id =(
 );
 
 -- *** The Forgotten Gift ***
+--     from: 109 Tileston Street
+--     to: 728 Maple Place
 
+/*  1- find the sender address id  */
+SELECT id FROM addresses WHERE address = '109 Tileston Street';
+
+/*  2- find the reciever address id */
+SELECT id from addresses WHERE address = '728 Maple Place';
+/*  3- find the content of the package with these ids */
+SELECT packages.contents FROM packages
+WHERE from_address_id=(
+    SELECT id FROM addresses WHERE address = '109 Tileston Street'
+    )AND to_address_id=(
+        SELECT id FROM addresses WHERE address ='728 Maple Place'
+    );
+
+/* 4- find the package_id of this package from packages */
+--         we can get it using content of the package
+--          OR
+--         we can get it using the from_address and to_address ids
+-- 1 :
+    SELECT id from packages WHERE contents='Flowers';
+-- 2 :
+    SELECT id FROM packages WHERE from_address_id=(
+        SELECT id FROM addresses WHERE address = '109 Tileston Street'
+    )AND to_address_id=(
+        SELECT id FROM addresses WHERE address ='728 Maple Place'
+    );
+
+/* 5- find the last action of this package */
+SELECT scans.action FROM scans
+WHERE package_id = (
+    SELECT id FROM packages WHERE from_address_id=(
+        SELECT id FROM addresses WHERE address = '109 Tileston Street'
+    )AND to_address_id=(
+        SELECT id FROM addresses WHERE address ='728 Maple Place'
+    )
+) ORDER BY timestamp DESC
+LIMIT 1;
+
+/* 6- find the driver_id of the last scan using scan table*/
+SELECT scans.driver_id FROM scans
+WHERE package_id = (
+    SELECT id FROM packages WHERE from_address_id=(
+        SELECT id FROM addresses WHERE address = '109 Tileston Street'
+    )AND to_address_id=(
+        SELECT id FROM addresses WHERE address ='728 Maple Place'
+    )
+) ORDER BY timestamp DESC
+LIMIT 1;
+
+/*7- find the name of the driver using his id */
+SELECT name FROM drivers
+WHERE id = (
+    SELECT driver_id FROM scans WHERE package_id = (
+        SELECT id FROM packages WHERE from_address_id=(
+            SELECT id FROM addresses WHERE address = '109 Tileston Street'
+        )AND to_address_id=(
+            SELECT id FROM addresses WHERE address ='728 Maple Place'
+        )
+    ) ORDER BY timestamp DESC
+LIMIT 1
+);
