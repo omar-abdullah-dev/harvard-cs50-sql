@@ -112,7 +112,7 @@ WHERE id =(
 /*  1- find the sender address id  */
 SELECT id FROM addresses WHERE address = '109 Tileston Street';
 
-/*  2- find the reciever address id */
+/*  2- find the receiver address id */
 SELECT id from addresses WHERE address = '728 Maple Place';
 /*  3- find the content of the package with these ids */
 SELECT packages.contents FROM packages
