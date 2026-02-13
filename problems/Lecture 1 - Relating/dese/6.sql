@@ -1,4 +1,5 @@
--- 6.sql: find the names of schools (public or charter!) that reported a 100% graduation rate.
+-- 6.sql: find the names of schools (public or charter!)
+-- that reported a 100% graduation rate.
     SELECT schools.name FROM schools
     WHERE id IN (
         SELECT graduation_rates.school_id

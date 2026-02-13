@@ -6,4 +6,4 @@
     WHERE type = 'Public School'
     GROUP BY city
     HAVING COUNT(*) <= 3
-    ORDER BY "school_count" DESC , city;
+    ORDER BY "school_count" DESC , city ASC;
