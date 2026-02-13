@@ -7,5 +7,5 @@ FROM schools
               ON graduation_rates.school_id = schools.id
          JOIN expenditures
               ON schools.district_id = expenditures.district_id
-ORDER BY per_pupil_expenditure DESC , schools.name;
+ORDER BY per_pupil_expenditure DESC , schools.name ASC;
 ;
