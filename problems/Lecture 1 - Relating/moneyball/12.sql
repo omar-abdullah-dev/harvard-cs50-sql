@@ -30,6 +30,7 @@ SELECT first_name , last_name FROM (SELECT first_name,last_name FROM (
            AND performances.H>0
          ORDER BY ((salaries.salary*1.0)/performances.H) ASC
          LIMIT 10 )
+
 INTERSECT
 
 SELECT first_name, last_name FROM (
