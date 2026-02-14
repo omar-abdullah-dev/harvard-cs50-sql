@@ -5,9 +5,11 @@
 -- In 2.sql, write a SQL query to find Cal Ripken Jr.’s salary history.
 --     Sort by year in descending order.
 --     return a table with two columns, one for year and one for salary.
+
     SELECT salaries.year ,salaries.salary FROM salaries
     WHERE player_id =(
-        SELECT player_id FROM players
+        SELECT players.id FROM players
         WHERE first_name = 'Cal' AND last_name = 'Ripken'
     )ORDER BY year DESC;
+
 

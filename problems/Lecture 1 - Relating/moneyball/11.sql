@@ -18,16 +18,16 @@
 -- As in 10.sql, ensure that the salary’s year and the performance’s year match.
 -- You may assume, for simplicity, that a player will only have one salary and one performance in 2001.
 
-SELECT players.first_name,players.last_name, ((salaries.salary*1.0)/performances.H) AS "dollars per hit"
-FROM players
-         JOIN salaries
-              ON players.id = salaries.player_id
-         JOIN performances
-              ON players.id = performances.player_id
-WHERE performances.H>0
-  AND performances.year = 2001
-  AND salaries.year =2001
-ORDER BY "dollars per hit" ASC,
-         players.first_name ASC ,
-         players.last_name ASC
-LIMIT 10;
+    SELECT players.first_name,players.last_name, (salaries.salary/performances.H) AS "dollars per hit"
+    FROM players
+             JOIN salaries
+                  ON players.id = salaries.player_id
+             JOIN performances
+                  ON players.id = performances.player_id
+    WHERE performances.H>0
+      AND performances.year = 2001
+      AND salaries.year =2001
+    ORDER BY "dollars per hit" ASC,
+             players.first_name ASC ,
+             players.last_name ASC
+    LIMIT 10;
