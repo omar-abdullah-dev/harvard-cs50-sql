@@ -5,10 +5,10 @@
 -- Sort by year in descending order.
 -- Note that there may be two players with the name “Ken Griffey.” This Ken Griffey was born in 1969.
 -- return a table with two columns, one for year and one for home runs.
-SELECT performances.year,performances.HR FROM performances
-WHERE player_id = (
-    SELECT players.id FROM players
-    WHERE players.first_name = 'Ken'
-      AND players.last_name = 'Griffey'
-      AND players.birth_year = 1969
-) ORDER BY performances.year DESC ;
+    SELECT performances.year,performances.HR FROM performances
+    WHERE player_id = (
+        SELECT players.id FROM players
+        WHERE players.first_name = 'Ken'
+          AND players.last_name = 'Griffey'
+          AND players.birth_year = 1969
+    ) ORDER BY performances.year DESC ;
