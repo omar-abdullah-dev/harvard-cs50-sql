@@ -29,12 +29,26 @@ CREATE TABLE IF NOT EXISTS checkIns(
 -- AirLines:
 -- id PK
 -- name of the airline TEXT
-
+CREATE TABLE IF NOT EXISTS  airLines(
+    "id" INTEGER,
+    "airline_concourse_id" INTEGER,
+    "name" TEXT NOT NULL ,
+    PRIMARY KEY ("id") ,
+    FOREIGN KEY ("airline_concourse_id") REFERENCES airline_concourses("id")
+);
 
 -- Airline_Concourses:
 --  id PK
 -- airline_id (FK)
 -- concourse TEXT IN SET ('A','B','C','D','E','F','T')
+CREATE TABLE IF NOT EXISTS  airline_concourses(
+    "id" INTEGER,
+    "airline_id" INTEGER ,
+    "concourse" TEXT NOT NULL
+      CHECK ( concourse IN ('A','B','C','D','E','F','T')),
+    PRIMARY KEY ("id"),
+    FOREIGN KEY ("airline_id") REFERENCES airLines("id")
+);
 
 
 -- Flights:
@@ -44,4 +58,13 @@ CREATE TABLE IF NOT EXISTS checkIns(
 -- landing airport TEXT
 -- departure_datetime TEXT
 -- arrival_datetime TEXT
-
+CREATE TABLE IF NOT EXISTS  flights (
+    "id" INTEGER,
+    "airline_id" INTEGER,
+    "departure_airport" TEXT NOT NULL ,
+    "landing_airport" TEXT NOT NULL  ,
+    "departure_datetime" NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "arrival_datetime" NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ("id") ,
+    FOREIGN KEY (airline_id) REFERENCES airLines
+);
