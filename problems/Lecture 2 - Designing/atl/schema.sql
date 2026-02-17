@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS  passengers (
     "id" INTEGER,
     "first_name" TEXT NOT NULL ,
     "last_name" TEXT NOT NULL ,
-    "age" INTEGER NOT NULL CHECK ( age>0 ) ,
+    "age" INTEGER NOT NULL CHECK ( "age">0 ) ,
     PRIMARY KEY ("id")
 );
 
@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXISTS checkIns(
      "id" INTEGER,
      "passenger_id" INTEGER,
      "flight_id" INTEGER,
-     "datetime" NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     "datetime" TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
      PRIMARY KEY ("id"),
-     FOREIGN KEY (passenger_id) REFERENCES passengers("id"),
-     FOREIGN KEY (flight_id) REFERENCES flights("id")
+     FOREIGN KEY ("passenger_id") REFERENCES passengers("id"),
+     FOREIGN KEY ("flight_id") REFERENCES flights("id")
 );
 
 -- AirLines:
@@ -31,10 +31,8 @@ CREATE TABLE IF NOT EXISTS checkIns(
 -- name of the airline TEXT
 CREATE TABLE IF NOT EXISTS  airLines(
     "id" INTEGER,
-    "airline_concourse_id" INTEGER,
     "name" TEXT NOT NULL ,
-    PRIMARY KEY ("id") ,
-    FOREIGN KEY ("airline_concourse_id") REFERENCES airline_concourses("id")
+    PRIMARY KEY ("id")
 );
 
 -- Airline_Concourses:
@@ -45,7 +43,7 @@ CREATE TABLE IF NOT EXISTS  airline_concourses(
     "id" INTEGER,
     "airline_id" INTEGER ,
     "concourse" TEXT NOT NULL
-      CHECK ( concourse IN ('A','B','C','D','E','F','T')),
+      CHECK ( "concourse" IN ('A','B','C','D','E','F','T')),
     PRIMARY KEY ("id"),
     FOREIGN KEY ("airline_id") REFERENCES airLines("id")
 );
@@ -56,15 +54,15 @@ CREATE TABLE IF NOT EXISTS  airline_concourses(
 -- airline_id FK
 -- departure airport TEXT
 -- landing airport TEXT
--- departure_datetime TEXT
--- arrival_datetime TEXT
+-- departure TEXT
+-- arrival TEXT
 CREATE TABLE IF NOT EXISTS  flights (
     "id" INTEGER,
     "airline_id" INTEGER,
     "departure_airport" TEXT NOT NULL ,
     "landing_airport" TEXT NOT NULL  ,
-    "departure_datetime" NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "arrival_datetime" NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "departure" TEXT NOT NULL,
+    "arrival" TEXT NOT NULL,
     PRIMARY KEY ("id") ,
-    FOREIGN KEY (airline_id) REFERENCES airLines
+    FOREIGN KEY ("airline_id") REFERENCES airLines("id")
 );
