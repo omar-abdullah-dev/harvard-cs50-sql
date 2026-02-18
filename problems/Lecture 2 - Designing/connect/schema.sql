@@ -36,8 +36,8 @@ CREATE TABLE schools(
 -- so employees can identify their past or current employment with the company.
 -- Ensure that LinkedIn’s database can store the following information for each company:
 --
--- The name of the company
--- The company’s industry (e.g., “Education”, “Technology, “Finance”, etc.)
+-- The name of company
+-- The company’s industry (e.g., “Education”, “Technology", “Finance”, etc.)
 -- The company’s location
 
 CREATE TABLE IF NOT EXISTS companies(
