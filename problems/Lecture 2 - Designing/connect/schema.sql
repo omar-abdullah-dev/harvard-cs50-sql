@@ -55,8 +55,8 @@
 -- No need to worry about one-way connections, such as user A “following” user B without user B “following” user A.
 --
     CREATE TABLE IF NOT EXISTS connections(
-        "user_id" INTEGER,
-        "connected_user_id" INTEGER,
+        "user_id" INTEGER CHECK (user_id != connected_user_id),
+        "connected_user_id" INTEGER NOT NULL  CHECK (user_id != connected_user_id),
         "date_connected" TEXT DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY ("user_id","connected_user_id"),
         FOREIGN KEY ("user_id") REFERENCES users("id"),
