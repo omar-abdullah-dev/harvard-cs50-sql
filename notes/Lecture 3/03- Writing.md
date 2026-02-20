@@ -1,32 +1,30 @@
-# Lecture 3 - CS50's Introduction to Databases with SQL
+## [Lecture 3](https://cs50.harvard.edu/sql/notes/3/#lecture-3)
 
-# [Lecture 3](#lecture-3)
+-   [Introduction](https://cs50.harvard.edu/sql/notes/3/#introduction)
+-   [Database Schema](https://cs50.harvard.edu/sql/notes/3/#database-schema)
+-   [Inserting Data](https://cs50.harvard.edu/sql/notes/3/#inserting-data)
+    -   [Questions](https://cs50.harvard.edu/sql/notes/3/#questions)
+-   [Other Constraints](https://cs50.harvard.edu/sql/notes/3/#other-constraints)
+-   [Inserting Multiple Rows](https://cs50.harvard.edu/sql/notes/3/#inserting-multiple-rows)
+    -   [Questions](https://cs50.harvard.edu/sql/notes/3/#questions-1)
+-   [Deleting Data](https://cs50.harvard.edu/sql/notes/3/#deleting-data)
+    -   [Questions](https://cs50.harvard.edu/sql/notes/3/#questions-2)
+-   [Updating Data](https://cs50.harvard.edu/sql/notes/3/#updating-data)
+-   [Triggers](https://cs50.harvard.edu/sql/notes/3/#triggers)
+    -   [Creating a “Sell” Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-sell-trigger)
+    -   [Creating a “Buy” Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-buy-trigger)
+    -   [Questions](https://cs50.harvard.edu/sql/notes/3/#questions-3)
+-   [Soft Deletions](https://cs50.harvard.edu/sql/notes/3/#soft-deletions)
+-   [Fin](https://cs50.harvard.edu/sql/notes/3/#fin)
 
--   [Introduction](#introduction)
--   [Database Schema](#database-schema)
--   [Inserting Data](#inserting-data)
-    -   [Questions](#questions)
--   [Other Constraints](#other-constraints)
--   [Inserting Multiple Rows](#inserting-multiple-rows)
-    -   [Questions](#questions-1)
--   [Deleting Data](#deleting-data)
-    -   [Questions](#questions-2)
--   [Updating Data](#updating-data)
--   [Triggers](#triggers)
-    -   [Creating a “Sell” Trigger](#creating-a-sell-trigger)
-    -   [Creating a “Buy” Trigger](#creating-a-buy-trigger)
-    -   [Questions](#questions-3)
--   [Soft Deletions](#soft-deletions)
--   [Fin](#fin)
-
-## [Introduction](#introduction)
+## [Introduction](https://cs50.harvard.edu/sql/notes/3/#introduction)
 
 -   Last week, we learned how to create our own database schema. In this lecture, we’ll explore how to add, update, and delete data in our databases.
 -   The Boston MFA (Museum of Fine Arts) is a century-old museum in Boston. The MFA manages a vast collection of historical and contemporary artifacts and artwork. They likely use a database of some kind to store data about their art and artifacts.
 -   When a new artifact is added to their collection, we can imagine they would insert the corresponding data to their database. Similarly, there are use cases in which data might need to be read, updated or deleted.
 -   We will focus now on the creation (or insertion) of data in a Boston MFA database.
 
-## [Database Schema](#database-schema)
+## [Database Schema](https://cs50.harvard.edu/sql/notes/3/#database-schema)
 
 -   Consider this schema that the MFA might use for its collection.
 
@@ -45,7 +43,7 @@
     This should give us an empty result, because the table doesn’t have any data yet.
 
 
-## [Inserting Data](#inserting-data)
+## [Inserting Data](https://cs50.harvard.edu/sql/notes/3/#inserting-data)
 
 -   The SQL statement `INSERT INTO` is used to insert a row of data into a given table.
 
@@ -78,13 +76,13 @@
     Notice that the way SQLite fills out the primary key values is by incrementing the previous primary key—in this case, 1.
 
 
-### [Questions](#questions)
+### [Questions](https://cs50.harvard.edu/sql/notes/3/#questions)
 
 > If we delete a row with the primary key 1, will SQLite automatically assign a primary key of 1 to the next inserted row?
 
 -   No, SQLite actually selects the highest primary key value in the table and increments it to generate the next primary key value.
 
-## [Other Constraints](#other-constraints)
+## [Other Constraints](https://cs50.harvard.edu/sql/notes/3/#other-constraints)
 
 -   Opening the file `schema.sql` will pull up the schema for the database.
 
@@ -111,7 +109,7 @@
 
 -   In this manner, the schema constraints are guardrails that protect us from adding rows that do not follow the schema of our database.
 
-## [Inserting Multiple Rows](#inserting-multiple-rows)
+## [Inserting Multiple Rows](https://cs50.harvard.edu/sql/notes/3/#inserting-multiple-rows)
 
 -   We may need to insert more than one row at a time while writing into a database. One way to do this is to separate out the rows using commas in the `INSERT INTO` command.
 
@@ -201,7 +199,7 @@
     ```
 
 
-### [Questions](#questions-1)
+### [Questions](https://cs50.harvard.edu/sql/notes/3/#questions-1)
 
 > Can we place columns in specific positions while inserting into a table?
 
@@ -215,7 +213,7 @@
 
 -   When we imported data from the CSV file, one of the `acquired` values was missing! This was interpreted as text and hence, read into the table as an empty text value. We can run queries on the table after importing to convert these empty values into `NULL` if required.
 
-## [Deleting Data](#deleting-data)
+## [Deleting Data](https://cs50.harvard.edu/sql/notes/3/#deleting-data)
 
 -   We saw previously that running the following command deleted all rows from the table `collections`. (We don’t want to actually run this command now or we’ll lose all the data in the table!)
 
@@ -323,13 +321,13 @@
     We observe that none of the rows have an ID of 3 (the ID of the artist deleted from the `artists` table).
 
 
-### [Questions](#questions-2)
+### [Questions](https://cs50.harvard.edu/sql/notes/3/#questions-2)
 
 > We just deleted an artist with the ID of 3. Is there any way to make the next inserted row have an ID of 3?
 
 -   By default, as we discussed before, SQLite will select the largest ID present in the table and increment it to obtain the next ID. But we can use the `AUTOINCREMENT` keyword while creating a column to indicate that any deleted ID should be repurposed for a new row being inserted into the table.
 
-## [Updating Data](#updating-data)
+## [Updating Data](https://cs50.harvard.edu/sql/notes/3/#updating-data)
 
 -   We can easily imagine scenarios in which data in a database would need to be updated. Perhaps, in the case of the MFA database, we find out that the painting “Farmers working at dawn” originally mapped to an “Unidentified artist” was actually created by the artist Li Yin.
 -   We can use the update command to make changes to say, the affiliation of a painting. Here is the syntax of the update command.
@@ -355,12 +353,12 @@
     The first part of this query specifies the table to be updated. The next part retrieves the ID of Li Yin to set as the new ID. The last part selects the row(s) in `created` which will be updated with the ID of Li Yin, which is the painting “Farmers working at dawn”!
 
 
-## [Triggers](#triggers)
+## [Triggers](https://cs50.harvard.edu/sql/notes/3/#triggers)
 
 -   A **trigger** is a SQL statement that runs automatically in response to another SQL statement, such as an `INSERT`, `UPDATE`, or `DELETE`.
 -   Triggers are useful for maintaining data consistency and automating tasks across related tables.
 
-### [Creating a “Sell” Trigger](#creating-a-sell-trigger)
+### [Creating a “Sell” Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-sell-trigger)
 
 -   Consider the MFA database with a `collections` table and a new `transactions` table.
 
@@ -389,7 +387,7 @@
 -   `OLD."title"` accesses the title column of the row about to be deleted.
 -   The trigger automatically inserts a record into `transactions` with the action “sold”.
 
-### [Creating a “Buy” Trigger](#creating-a-buy-trigger)
+### [Creating a “Buy” Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-buy-trigger)
 
 -   When artwork is bought (inserted into `collections`), we want it logged in `transactions` with an action of “bought”.
 
@@ -406,13 +404,13 @@
 -   **NEW** is a special keyword that refers to the row being inserted.
 -   `NEW."title"` accesses the title column of the newly inserted row.
 
-### [Questions](#questions-3)
+### [Questions](https://cs50.harvard.edu/sql/notes/3/#questions-3)
 
 > Can we have multiple SQL statements inside a trigger?
 
 -   Yes, you can have multiple statements inside the `BEGIN` and `END` blocks, separated by semicolons.
 
-## [Soft Deletions](#soft-deletions)
+## [Soft Deletions](https://cs50.harvard.edu/sql/notes/3/#soft-deletions)
 
 -   **Soft deletion** (or a **soft delete**) means marking data as deleted rather than actually removing it from the database.
 -   For example, we could add a `deleted` column to the `collections` table with a default value of 0:
@@ -440,6 +438,6 @@
 -   This way, data can be recovered if needed and maintains a complete historical record.
 -   However, it’s still important to comply with data privacy regulations that require data to be truly deleted.
 
-## [Fin](#fin)
+## [Fin](https://cs50.harvard.edu/sql/notes/3/#fin)
 
 -   This brings us to the conclusion of Lecture 3 about Writing in SQL!
