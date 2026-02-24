@@ -1,96 +1,364 @@
+# Harvard CS50 – Introduction to Databases with SQL
 
-# Harvard CS50 – Intro to SQL
+> A comprehensive study repository containing notes, SQL queries, problem solutions, and database schemas from Harvard's CS50 Introduction to Databases course.
 
-This repository contains notes, SQL queries, schemas, and problem set solutions gathered while working through Harvard's CS50 Introduction to Databases with SQL. It is organized to be a practical learning reference for SQL fundamentals.
+## 📚 About This Repository
 
-## Repository Structure
+This repository serves as a complete learning resource for mastering SQL fundamentals through Harvard's CS50 SQL course. It includes organized lecture materials, practice problems with solutions, reusable SQL query templates, and working database schemas for hands-on learning.
+
+---
+
+## 📂 Repository Structure
 
 ```
 harvard-cs50-sql/
-├── README.md
-├── Lecture Slides/
+│
+├── 📖 Lecture Slides/          # PDF presentations for all lectures
 │   ├── lecture 0 - Querying.pdf
 │   ├── lecture 1 - Relating.pdf
 │   ├── lecture 2 - Designing.pdf
 │   └── lecture 3 - Writing.pdf
-├── Lectures Quick view/
+│
+├── 📝 Lectures Quick view/     # Quick reference summaries
 │   ├── 0- Querying.md
 │   ├── 1- Relating.md
 │   ├── 2- Desiging.md
 │   └── 3- Writing.md
-├── notes/
-│   ├── Lecture 0/
-│   ├── Lecture 1/
-│   ├── Lecture 2/
-│   └── Lecture 3/
-├── problems/
+│
+├── 📓 notes/                   # Detailed lecture notes
+│   ├── Lecture 0/             # Querying fundamentals
+│   ├── Lecture 1/             # Relationships and joins
+│   ├── Lecture 2/             # Database design
+│   └── Lecture 3/             # Writing and modifying data
+│
+├── 🎯 problems/                # Problem sets with solutions
 │   ├── Lecture 0 - Querying/
+│   │   ├── Cyberchase/       # 13 problems
+│   │   ├── Normals/          # 10 problems
+│   │   ├── players/          # 10 problems
+│   │   └── Views/            # 10 problems
+│   │
 │   ├── Lecture 1 - Relating/
+│   │   ├── dese/             # 13 problems (education data)
+│   │   ├── moneyball/        # 12 problems (baseball stats)
+│   │   └── Packages/         # Package management queries
+│   │
 │   ├── Lecture 2 - Designing/
+│   │   ├── atl/              # Airport database schema
+│   │   ├── connect/          # Social network schema
+│   │   └── donuts/           # Donut shop schema
+│   │
 │   └── Lecture 3 - Writing/
-├── queries/
-│   ├── aggregations/
-│   ├── basic/
-│   ├── designing/
-│   ├── groups/
-│   ├── joins/
-│   ├── sets/
-│   └── subqueries/
-├── schemas/
-│   ├── Lecture 0/
-│   ├── Lecture 1/
-│   ├── Lecture 2/
-│   └── Lecture 3/
-├── Source Code/
+│       ├── dont-panic/       # Database manipulation
+│       └── meteorites/       # Data import and cleaning
+│
+├── 🔍 queries/                 # Reusable SQL query templates
+│   ├── aggregations/         # AVG, COUNT, MIN, MAX
+│   ├── basic/                # SELECT, WHERE, ORDER BY
+│   ├── designing/            # CREATE, ALTER, DROP
+│   ├── groups/               # GROUP BY, HAVING
+│   ├── joins/                # INNER, LEFT, FULL joins
+│   ├── sets/                 # UNION, INTERSECT, EXCEPT
+│   └── subqueries/           # Nested queries
+│
+├── 💾 schemas/                 # Database files (.db)
+│   ├── Lecture 0/            # Practice databases
+│   ├── Lecture 1/            # Relational databases
+│   ├── Lecture 2/            # Design examples
+│   └── Lecture 3/            # Writing exercises
+│
+├── 📦 Source Code/            # Official course materials
 │   ├── 0-Querying/
 │   ├── 1-Relating/
 │   ├── 2-Designing/
 │   └── 3-Writing/
-└── summaries/
+│
+└── 📋 summaries/              # Additional SQL references
     ├── SQL-APNA College.pdf
     └── SQL-Summary.pdf
 ```
 
-## How to Use `run_sql.ps1`
+---
 
-This repository includes a PowerShell script `run_sql.ps1` to execute `.sql` files against the `identifier.sqlite` database.
+## 🎓 Course Content Overview
 
-**Prerequisites:**
-- PowerShell
-- SQLite3 installed and in your system's PATH.
+### Lecture 0: Querying
+**Learn the fundamentals of SQL queries**
+- `SELECT` statements and basic queries
+- Filtering with `WHERE` clauses
+- Pattern matching with `LIKE`
+- Sorting with `ORDER BY`
+- Aggregation functions (COUNT, AVG, SUM, MIN, MAX)
+- Working with NULL values
+- Date and time filtering
 
-**Usage:**
+**Practice Problems:**
+- **Cyberchase** (13 problems): Query a TV show database
+- **Normals** (10 problems): Analyze meteorological data
+- **Players** (10 problems): Baseball player statistics
+- **Views** (10 problems): Museum exhibition data
 
-1.  Open a PowerShell terminal.
-2.  Navigate to the root of this repository.
-3.  Run the script, providing the path to the `.sql` file you want to execute.
+---
 
-**Example:**
-```powershell
-.\run_sql.ps1 -SqlFile "queries\basic\select_where.sql"
+### Lecture 1: Relating
+**Master relationships between tables**
+- `JOIN` operations (INNER, LEFT, RIGHT, FULL)
+- One-to-many and many-to-many relationships
+- Set operations (UNION, INTERSECT, EXCEPT)
+- `GROUP BY` and `HAVING` clauses
+- Subqueries and nested SELECT statements
+
+**Practice Problems:**
+- **DESE** (13 problems): Massachusetts education data analysis
+- **Moneyball** (12 problems): Baseball statistics and analytics
+- **Packages** (1 problem): Package dependency analysis
+
+---
+
+### Lecture 2: Designing
+**Design efficient database schemas**
+- Database normalization
+- Primary and foreign keys
+- Table constraints (NOT NULL, UNIQUE, CHECK)
+- One-to-one, one-to-many, many-to-many relationships
+- Indexes for performance
+- Entity-Relationship (ER) diagrams
+
+**Practice Problems:**
+- **ATL** (schema design): Airport database design
+- **Connect** (schema design): Social network database
+- **Donuts** (schema design): Donut shop order system
+
+---
+
+### Lecture 3: Writing
+**Modify and maintain databases**
+- `INSERT` statements to add data
+- `UPDATE` statements to modify records
+- `DELETE` statements to remove data
+- Importing data from CSV files
+- Triggers for automated actions
+- Soft deletes vs. hard deletes
+- Transactions and data integrity
+
+**Practice Problems:**
+- **Don't Panic** (SQL injection): Database security
+- **Meteorites** (data import): Clean and import meteorite data
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **SQLite3** installed on your system
+- A SQL client (recommended: [DB Browser for SQLite](https://sqlitebrowser.org/))
+- Text editor or IDE (VS Code, IntelliJ IDEA, etc.)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/harvard-cs50-sql.git
+   cd harvard-cs50-sql
+   ```
+
+2. **Open a database:**
+   ```bash
+   sqlite3 schemas/Lecture\ 0/normals.db
+   ```
+
+3. **Run SQL queries:**
+   ```sql
+   -- List all tables
+   .tables
+   
+   -- Run a query
+   SELECT * FROM table_name LIMIT 10;
+   
+   -- Execute a SQL file
+   .read queries/basic/select_where.sql
+   ```
+
+---
+
+## 💡 How to Use This Repository
+
+### For Learning:
+1. **Start with Quick View** → Read the lecture summary in `Lectures Quick view/`
+2. **Review Slides** → Study the PDF in `Lecture Slides/`
+3. **Read Detailed Notes** → Dive deep in `notes/`
+4. **Practice Queries** → Experiment with examples in `queries/`
+5. **Solve Problems** → Work through `problems/` directories
+6. **Check Schemas** → Explore database structures in `schemas/`
+
+### For Quick Reference:
+- **Need a specific query?** → Check `queries/` by topic
+- **Forgot syntax?** → Review `summaries/` PDFs
+- **Need example data?** → Use databases in `schemas/`
+
+### Study Order (Recommended):
+```
+Week 1: Lecture 0 (Querying)
+  ├── Watch lecture + review slides
+  ├── Read notes/Lecture 0/
+  ├── Practice with queries/basic/
+  └── Solve problems/Lecture 0 - Querying/
+
+Week 2: Lecture 1 (Relating)
+  ├── Watch lecture + review slides
+  ├── Read notes/Lecture 1/
+  ├── Practice with queries/joins/ and queries/subqueries/
+  └── Solve problems/Lecture 1 - Relating/
+
+Week 3: Lecture 2 (Designing)
+  ├── Watch lecture + review slides
+  ├── Read notes/Lecture 2/
+  ├── Practice with queries/designing/
+  └── Design schemas in problems/Lecture 2 - Designing/
+
+Week 4: Lecture 3 (Writing)
+  ├── Watch lecture + review slides
+  ├── Read notes/Lecture 3/
+  ├── Review Source Code/3-Writing/
+  └── Complete problems/Lecture 3 - Writing/
 ```
 
-## Lecture Materials
+---
 
-This repository is organized into lectures, each with its own set of materials.
+## 🔧 Useful SQL Commands
 
-- **Lecture Slides:** PDFs of the lecture presentations.
-- **Lectures Quick view:** Markdown files with quick summaries of the lectures.
-- **notes:** Detailed Markdown notes for each lecture.
-- **Source Code:** Source code and other materials from the lectures.
+### Database Navigation
+```sql
+.open database.db          -- Open a database
+.tables                    -- List all tables
+.schema table_name         -- Show table structure
+.mode column               -- Format output as columns
+.headers on                -- Show column headers
+```
 
-## Problems & Solutions
+### Query Execution
+```sql
+.read file.sql             -- Execute SQL from file
+.output results.txt        -- Save output to file
+.quit                      -- Exit SQLite
+```
 
-The `problems` directory contains the problem sets for each lecture. Each lecture's problem set is further divided into topics.
+---
 
-## SQL Queries
+## 📊 Problem Set Quick Reference
 
-The `queries` directory contains a collection of SQL queries demonstrating various concepts. These are organized by topic.
+| Problem Set | Topic | Count | Difficulty |
+|------------|-------|-------|------------|
+| Cyberchase | Querying | 13 | ⭐ Easy |
+| Normals | Querying | 10 | ⭐⭐ Medium |
+| Players | Querying | 10 | ⭐⭐ Medium |
+| Views | Querying | 10 | ⭐⭐ Medium |
+| DESE | Relating | 13 | ⭐⭐⭐ Hard |
+| Moneyball | Relating | 12 | ⭐⭐⭐ Hard |
+| Packages | Relating | 1 | ⭐⭐ Medium |
+| ATL | Designing | Schema | ⭐⭐ Medium |
+| Connect | Designing | Schema | ⭐⭐⭐ Hard |
+| Donuts | Designing | Schema | ⭐⭐ Medium |
+| Don't Panic | Writing | Security | ⭐⭐ Medium |
+| Meteorites | Writing | Import | ⭐⭐⭐ Hard |
 
-## Database Schemas
+---
 
-The `schemas` directory contains the database files (`.db`) used in the lectures and problem sets.
+## 🎯 Key SQL Concepts Covered
 
-## Summaries
+### Data Querying
+- ✅ SELECT, WHERE, ORDER BY, LIMIT
+- ✅ Filtering and pattern matching (LIKE, BETWEEN, IN)
+- ✅ Aggregate functions (COUNT, AVG, SUM, MIN, MAX)
+- ✅ NULL handling (IS NULL, IS NOT NULL)
 
-The `summaries` directory contains additional summary documents related to SQL.
+### Relationships
+- ✅ INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN
+- ✅ Many-to-many relationships with junction tables
+- ✅ Subqueries and nested queries
+- ✅ Set operations (UNION, INTERSECT, EXCEPT)
+
+### Database Design
+- ✅ Primary keys and foreign keys
+- ✅ Normalization (1NF, 2NF, 3NF)
+- ✅ Constraints (NOT NULL, UNIQUE, CHECK, DEFAULT)
+- ✅ Indexes for performance optimization
+
+### Data Manipulation
+- ✅ INSERT, UPDATE, DELETE statements
+- ✅ Data import from CSV files
+- ✅ Triggers for automation
+- ✅ Transactions and ACID properties
+
+---
+
+## 🛠️ Tools & Resources
+
+### Recommended Tools
+- **[DB Browser for SQLite](https://sqlitebrowser.org/)** - Visual database management
+- **[SQLite Online](https://sqliteonline.com/)** - Browser-based SQL practice
+- **[SQL Fiddle](http://sqlfiddle.com/)** - Test queries online
+- **[SQLite Documentation](https://www.sqlite.org/docs.html)** - Official reference
+
+### Additional Learning Resources
+- [CS50 SQL Course](https://cs50.harvard.edu/sql/) - Official course page
+- [SQL Cheat Sheet](https://www.sqltutorial.org/sql-cheat-sheet/) - Quick reference
+- [SQLZoo](https://sqlzoo.net/) - Interactive SQL tutorials
+- [LeetCode SQL Problems](https://leetcode.com/problemset/database/) - Practice problems
+
+---
+
+## 📝 Notes Structure
+
+Each lecture's notes folder contains:
+- **Markdown notes** with code examples
+- **Images/diagrams** for visual learning
+- **Key concepts** and best practices
+- **Common pitfalls** and how to avoid them
+
+---
+
+## 🤝 Contributing
+
+This is a personal study repository, but suggestions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This repository is for educational purposes. Course materials are property of Harvard University and CS50.
+
+---
+
+## 👤 Author
+
+**Your Name**
+- Studying SQL fundamentals through Harvard's CS50
+- Goal: Master database concepts for backend development
+- Next steps: JDBC and Java backend integration
+
+---
+
+## 🙏 Acknowledgments
+
+- **Harvard University** and **CS50 Team** for the excellent course
+- **David J. Malan** and **Carter Zenke** as instructor for clear explanations
+- The SQL community for continuous learning resources
+
+---
+
+## 📅 Last Updated
+
+February 24, 2026
+
+---
+
+**Happy Learning! 🚀📊**
+
+> "Data is the new oil, and SQL is the refinery." - Learn it well!
