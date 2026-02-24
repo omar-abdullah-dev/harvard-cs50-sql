@@ -7,9 +7,7 @@ This repository contains notes, SQL queries, schemas, and problem set solutions 
 
 ```
 harvard-cs50-sql/
-├── identifier.sqlite
 ├── README.md
-├── run_sql.ps1
 ├── Lecture Slides/
 │   ├── lecture 0 - Querying.pdf
 │   ├── lecture 1 - Relating.pdf
