@@ -17,19 +17,22 @@ harvard-cs50-sql/
 │   ├── lecture 0 - Querying.pdf
 │   ├── lecture 1 - Relating.pdf
 │   ├── lecture 2 - Designing.pdf
-│   └── lecture 3 - Writing.pdf
+│   ├── lecture 3 - Writing.pdf
+│   └── lecture 4 - Viewing.pdf
 │
 ├── 📝 Lectures Quick view/     # Quick reference summaries
 │   ├── 0- Querying.md
 │   ├── 1- Relating.md
 │   ├── 2- Desiging.md
-│   └── 3- Writing.md
+│   ├── 3- Writing.md
+│   └── 4- Viewing.md
 │
 ├── 📓 notes/                   # Detailed lecture notes
 │   ├── Lecture 0/             # Querying fundamentals
 │   ├── Lecture 1/             # Relationships and joins
 │   ├── Lecture 2/             # Database design
-│   └── Lecture 3/             # Writing and modifying data
+│   ├── Lecture 3/             # Writing and modifying data
+│   └── Lecture 4/             # Views and optimization
 │
 ├── 🎯 problems/                # Problem sets with solutions
 │   ├── Lecture 0 - Querying/
@@ -48,9 +51,12 @@ harvard-cs50-sql/
 │   │   ├── connect/          # Social network schema
 │   │   └── donuts/           # Donut shop schema
 │   │
-│   └── Lecture 3 - Writing/
-│       ├── dont-panic/       # Database manipulation
-│       └── meteorites/       # Data import and cleaning
+│   ├── Lecture 3 - Writing/
+│   │   ├── dont-panic/       # Database manipulation
+│   │   └── meteorites/       # Data import and cleaning
+│   │
+│   └── Lecture 4 - Viewing/
+│       └── census/           # Census data views
 │
 ├── 🔍 queries/                 # Reusable SQL query templates
 │   ├── aggregations/         # AVG, COUNT, MIN, MAX
@@ -65,17 +71,21 @@ harvard-cs50-sql/
 │   ├── Lecture 0/            # Practice databases
 │   ├── Lecture 1/            # Relational databases
 │   ├── Lecture 2/            # Design examples
-│   └── Lecture 3/            # Writing exercises
+│   ├── Lecture 3/            # Writing exercises
+│   └── Lecture 4/            # Census database
 │
 ├── 📦 Source Code/            # Official course materials
 │   ├── 0-Querying/
 │   ├── 1-Relating/
 │   ├── 2-Designing/
-│   └── 3-Writing/
+│   ├── 3-Writing/
+│   └── 4-Viewing/
 │
-└── 📋 summaries/              # Additional SQL references
-    ├── SQL-APNA College.pdf
-    └── SQL-Summary.pdf
+├── 📋 summaries/              # Additional SQL references
+│   ├── SQL-APNA College.pdf
+│   └── SQL-Summary.pdf
+│
+└── 📄 README.md               # This file
 ```
 
 ---
@@ -144,6 +154,20 @@ harvard-cs50-sql/
 **Practice Problems:**
 - **Don't Panic** (SQL injection): Database security
 - **Meteorites** (data import): Clean and import meteorite data
+
+---
+
+### Lecture 4: Viewing
+**Create and optimize database views**
+- Creating views with `CREATE VIEW`
+- Temporary vs. permanent views
+- Materialized views
+- Common Table Expressions (CTEs)
+- Query optimization techniques
+- Partitioning and indexing strategies
+
+**Practice Problems:**
+- **Census** (schema design): Population data analysis with views
 
 ---
 
@@ -221,6 +245,12 @@ Week 4: Lecture 3 (Writing)
   ├── Read notes/Lecture 3/
   ├── Review Source Code/3-Writing/
   └── Complete problems/Lecture 3 - Writing/
+
+Week 5: Lecture 4 (Viewing)
+  ├── Watch lecture + review slides
+  ├── Read notes/Lecture 4/
+  ├── Review Source Code/4-Viewing/
+  └── Complete problems/Lecture 4 - Viewing/
 ```
 
 ---
@@ -261,6 +291,7 @@ Week 4: Lecture 3 (Writing)
 | Donuts | Designing | Schema | ⭐⭐ Medium |
 | Don't Panic | Writing | Security | ⭐⭐ Medium |
 | Meteorites | Writing | Import | ⭐⭐⭐ Hard |
+| Census | Viewing | Views | ⭐⭐ Medium |
 
 ---
 
@@ -289,6 +320,12 @@ Week 4: Lecture 3 (Writing)
 - ✅ Data import from CSV files
 - ✅ Triggers for automation
 - ✅ Transactions and ACID properties
+
+### Views & Optimization
+- ✅ CREATE VIEW for virtual tables
+- ✅ Common Table Expressions (CTEs)
+- ✅ Query performance optimization
+- ✅ Indexes and query planning
 
 ---
 
@@ -338,7 +375,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 👤 Author
 
-**Your Name**
+**Omar Abdullah Moharam**
 - Studying SQL fundamentals through Harvard's CS50
 - Goal: Master database concepts for backend development
 - Next steps: JDBC and Java backend integration
@@ -348,14 +385,14 @@ This repository is for educational purposes. Course materials are property of Ha
 ## 🙏 Acknowledgments
 
 - **Harvard University** and **CS50 Team** for the excellent course
-- **David J. Malan** and **Carter Zenke** as instructor for clear explanations
+- **David J. Malan** and **Carter Zenke** as instructors for clear explanations
 - The SQL community for continuous learning resources
 
 ---
 
 ## 📅 Last Updated
 
-February 24, 2026
+February 27, 2026
 
 ---
 
