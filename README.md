@@ -55,8 +55,9 @@ harvard-cs50-sql/
 │   │   ├── dont-panic/       # Database manipulation
 │   │   └── meteorites/       # Data import and cleaning
 │   │
-│   └── Lecture 4 - Viewing/
-│       └── census/           # Census data views
+├── Lecture 4 - Viewing/
+│       ├── census/           # Census data views
+│       └── private/          # The Private Eye mystery
 │
 ├── 🔍 queries/                 # Reusable SQL query templates
 │   ├── aggregations/         # AVG, COUNT, MIN, MAX
@@ -72,7 +73,7 @@ harvard-cs50-sql/
 │   ├── Lecture 1/            # Relational databases
 │   ├── Lecture 2/            # Design examples
 │   ├── Lecture 3/            # Writing exercises
-│   └── Lecture 4/            # Census database
+│   └── Lecture 4/            # Census and Private Eye databases
 │
 ├── 📦 Source Code/            # Official course materials
 │   ├── 0-Querying/
@@ -168,6 +169,7 @@ harvard-cs50-sql/
 
 **Practice Problems:**
 - **Census** (schema design): Population data analysis with views
+- **Private** (mystery solving): Use views and queries to solve "The Private Eye" mystery
 
 ---
 
@@ -292,6 +294,7 @@ Week 5: Lecture 4 (Viewing)
 | Don't Panic | Writing | Security | ⭐⭐ Medium |
 | Meteorites | Writing | Import | ⭐⭐⭐ Hard |
 | Census | Viewing | Views | ⭐⭐ Medium |
+| Private | Viewing | Mystery | ⭐⭐⭐ Hard |
 
 ---
 
@@ -392,7 +395,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 📅 Last Updated
 
-February 27, 2026
+February 28, 2026
 
 ---
 
