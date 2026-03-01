@@ -1,5 +1,8 @@
 CREATE VIEW june_vacancies AS
-SELECT listings.id,listings.property_type,listings.host_name, COUNT(*) AS days_vacant
+SELECT listings.id,
+       listings.property_type,
+       listings.host_name,
+       COUNT(*) AS days_vacant
 FROM listings
          LEFT JOIN availabilities ON listings.id = availabilities.listing_id
     AND availabilities.available = 1

@@ -1,5 +1,8 @@
 CREATE VIEW frequently_reviewed AS
-SELECT listings.id ,listings.property_type, listings.host_name, COUNT(comments) AS reviews
+SELECT listings.id ,
+       listings.property_type,
+       listings.host_name,
+       COUNT(comments) AS reviews
 FROM listings
          JOIN reviews ON listings.id = reviews.listing_id
 WHERE comments IS NOT NULL
