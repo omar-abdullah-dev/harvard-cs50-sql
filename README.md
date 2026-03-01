@@ -55,9 +55,11 @@ harvard-cs50-sql/
 │   │   ├── dont-panic/       # Database manipulation
 │   │   └── meteorites/       # Data import and cleaning
 │   │
-├── Lecture 4 - Viewing/
-│       ├── census/           # Census data views
-│       └── private/          # The Private Eye mystery
+│   │
+│   └── Lecture 4 - Viewing/
+│       ├── bnb/              # Airbnb data views (5 problems)
+│       ├── census/           # Census data views (4 problems)
+│       └── private/          # The Private Eye mystery (1 problem)
 │
 ├── 🔍 queries/                 # Reusable SQL query templates
 │   ├── aggregations/         # AVG, COUNT, MIN, MAX
@@ -73,7 +75,7 @@ harvard-cs50-sql/
 │   ├── Lecture 1/            # Relational databases
 │   ├── Lecture 2/            # Design examples
 │   ├── Lecture 3/            # Writing exercises
-│   └── Lecture 4/            # Census and Private Eye databases
+│   └── Lecture 4/            # BNB, Census and Private Eye databases
 │
 ├── 📦 Source Code/            # Official course materials
 │   ├── 0-Querying/
@@ -168,8 +170,9 @@ harvard-cs50-sql/
 - Partitioning and indexing strategies
 
 **Practice Problems:**
-- **Census** (schema design): Population data analysis with views
-- **Private** (mystery solving): Use views and queries to solve "The Private Eye" mystery
+- **BNB** (5 problems): Analyze Airbnb listings and create views for property searches
+- **Census** (4 problems): Population data analysis with views
+- **Private** (1 problem): Use views and queries to solve "The Private Eye" mystery
 
 ---
 
@@ -293,6 +296,7 @@ Week 5: Lecture 4 (Viewing)
 | Donuts | Designing | Schema | ⭐⭐ Medium |
 | Don't Panic | Writing | Security | ⭐⭐ Medium |
 | Meteorites | Writing | Import | ⭐⭐⭐ Hard |
+| BNB | Viewing | Views | ⭐⭐ Medium |
 | Census | Viewing | Views | ⭐⭐ Medium |
 | Private | Viewing | Mystery | ⭐⭐⭐ Hard |
 
@@ -395,7 +399,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 📅 Last Updated
 
-February 28, 2026
+March 1, 2026
 
 ---
 
