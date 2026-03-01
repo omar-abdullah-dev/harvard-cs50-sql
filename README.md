@@ -62,14 +62,15 @@ harvard-cs50-sql/
 │       └── private/          # The Private Eye mystery (1 problem)
 │
 ├── 🔍 queries/                 # Reusable SQL query templates
-│   ├── aggregations/         # AVG, COUNT, MIN, MAX
-│   ├── basic/                # SELECT, WHERE, ORDER BY
+│   ├── aggregations/         # AVG, COUNT, MIN, MAX, SUM
+│   ├── basic/                # SELECT, WHERE, ORDER BY, LIKE, DISTINCT
 │   ├── designing/            # CREATE, ALTER, DROP
 │   ├── groups/               # GROUP BY, HAVING
 │   ├── joins/                # INNER, LEFT, FULL joins
 │   ├── sets/                 # UNION, INTERSECT, EXCEPT
 │   ├── subqueries/           # Nested queries
-│   └── views/                # Views, CTEs, soft deletions (Lecture 4)
+│   ├── views/                # Views, CTEs, soft deletions (Lecture 4)
+│   └── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3)
 │
 ├── 💾 schemas/                 # Database files (.db)
 │   ├── Lecture 0/            # Practice databases
@@ -249,6 +250,7 @@ Week 3: Lecture 2 (Designing)
 Week 4: Lecture 3 (Writing)
   ├── Watch lecture + review slides
   ├── Read notes/Lecture 3/
+  ├── Practice with queries/writing/
   ├── Review Source Code/3-Writing/
   └── Complete problems/Lecture 3 - Writing/
 
@@ -277,8 +279,17 @@ Comprehensive examples for working with views, CTEs, and advanced patterns:
 - **view_management.sql** - Creating, dropping, and managing views
 - **README.md** - Complete guide with best practices and comparisons
 
+### **writing/** (Lecture 3 - NEW! ✨)
+Comprehensive examples for data modification and automation:
+- **insert.sql** - INSERT statements, bulk inserts, CSV imports
+- **update.sql** - UPDATE with calculations, subqueries, CASE statements
+- **delete.sql** - DELETE operations, foreign keys, cascading deletes
+- **triggers.sql** - BEFORE/AFTER triggers, OLD/NEW keywords, automation
+- **transactions.sql** - BEGIN/COMMIT/ROLLBACK, savepoints, ACID properties
+- **README.md** - Complete guide with safety practices and examples
+
 ### Other Query Folders:
-- **basic/** - SELECT, WHERE, ORDER BY, filtering fundamentals
+- **basic/** - SELECT, WHERE, ORDER BY, LIKE, DISTINCT, BETWEEN, filtering
 - **joins/** - INNER, LEFT, RIGHT, FULL joins with examples
 - **aggregations/** - AVG, COUNT, MIN, MAX, SUM functions
 - **groups/** - GROUP BY, HAVING clause patterns
