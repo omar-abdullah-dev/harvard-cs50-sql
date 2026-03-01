@@ -68,7 +68,8 @@ harvard-cs50-sql/
 │   ├── groups/               # GROUP BY, HAVING
 │   ├── joins/                # INNER, LEFT, FULL joins
 │   ├── sets/                 # UNION, INTERSECT, EXCEPT
-│   └── subqueries/           # Nested queries
+│   ├── subqueries/           # Nested queries
+│   └── views/                # Views, CTEs, soft deletions (Lecture 4)
 │
 ├── 💾 schemas/                 # Database files (.db)
 │   ├── Lecture 0/            # Practice databases
@@ -254,15 +255,42 @@ Week 4: Lecture 3 (Writing)
 Week 5: Lecture 4 (Viewing)
   ├── Watch lecture + review slides
   ├── Read notes/Lecture 4/
+  ├── Practice with queries/views/
   ├── Review Source Code/4-Viewing/
   └── Complete problems/Lecture 4 - Viewing/
 ```
 
 ---
 
+## 📂 Query Templates Library
+
+The `queries/` folder contains organized SQL query examples and patterns for quick reference:
+
+### **views/** (Lecture 4 - NEW! ✨)
+Comprehensive examples for working with views, CTEs, and advanced patterns:
+- **basic_views.sql** - Creating and using simple views, joining tables
+- **aggregate_views.sql** - Views with AVG, COUNT, SUM and temporary views
+- **cte.sql** - Common Table Expressions with WITH clause
+- **partitioning_views.sql** - Dividing data into logical pieces
+- **securing_views.sql** - Protecting PII and sensitive data
+- **soft_deletions.sql** - Soft delete patterns with INSTEAD OF triggers
+- **view_management.sql** - Creating, dropping, and managing views
+- **README.md** - Complete guide with best practices and comparisons
+
+### Other Query Folders:
+- **basic/** - SELECT, WHERE, ORDER BY, filtering fundamentals
+- **joins/** - INNER, LEFT, RIGHT, FULL joins with examples
+- **aggregations/** - AVG, COUNT, MIN, MAX, SUM functions
+- **groups/** - GROUP BY, HAVING clause patterns
+- **subqueries/** - Nested queries and IN keyword
+- **sets/** - UNION, INTERSECT, EXCEPT operations
+- **designing/** - CREATE, ALTER, DROP table operations
+
+---
+
 ## 🔧 Useful SQL Commands
 
-### Database Navigation
+````
 ```sql
 .open database.db          -- Open a database
 .tables                    -- List all tables
