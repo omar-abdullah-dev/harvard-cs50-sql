@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/.idea/queries/Dese_Queries.sql" value="4ef45789-b755-4ebc-86d0-bf82db23ae61" />
+    <file url="file://$PROJECT_DIR$/.idea/queries/Moneyball_Queries.sql" value="4a903b46-a0fc-4c93-9f8d-dcb7d0c0b957" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 1 - Relating/dese/12.sql" value="4ef45789-b755-4ebc-86d0-bf82db23ae61" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 1 - Relating/moneyball/12.sql" value="4a903b46-a0fc-4c93-9f8d-dcb7d0c0b957" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 1 - Relating/moneyball/2.sql" value="4a903b46-a0fc-4c93-9f8d-dcb7d0c0b957" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 2 - Designing/atl/schema.sql" value="026d68af-2f03-4455-ac58-9ecafc28f086" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 2 - Designing/donuts/schema.sql" value="19899b20-573a-4a80-97d7-9419e1c5fd82" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 3 - Writing/dont-panic/hack.sql" value="c080a163-4625-4b7c-9477-d97d7d556aa1" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 3 - Writing/dont-panic/reset.sql" value="c080a163-4625-4b7c-9477-d97d7d556aa1" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 3 - Writing/meteorites/import.sql" value="c6588400-dedc-4560-84c3-4b18b55b789e" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/available.sql" value="598e5627-a20c-41dc-abed-afe57ac5f325" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/frequently_reviewed.sql" value="598e5627-a20c-41dc-abed-afe57ac5f325" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/june_vacancies.sql" value="598e5627-a20c-41dc-abed-afe57ac5f325" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/no_descriptions.sql" value="598e5627-a20c-41dc-abed-afe57ac5f325" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/one_bedrooms.sql" value="598e5627-a20c-41dc-abed-afe57ac5f325" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/by_district.sql" value="71b8106b-f64e-4545-9b66-9a4e1def6f7d" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/most_populated.sql" value="71b8106b-f64e-4545-9b66-9a4e1def6f7d" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/rural.sql" value="71b8106b-f64e-4545-9b66-9a4e1def6f7d" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/total.sql" value="71b8106b-f64e-4545-9b66-9a4e1def6f7d" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/private/private.sql" value="5e59ab5e-5f27-4b81-a2a9-8450b37683dd" />
+  </component>
+</project>

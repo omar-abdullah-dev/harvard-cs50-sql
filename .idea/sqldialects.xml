@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/.idea/queries/Dese_Queries.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/.idea/queries/Moneyball_Queries.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/.idea/queries/Normal_Queries.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/.idea/queries/Players_Queries.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/.idea/queries/ViewQueries.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/1.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/10.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/2.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/3.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/4.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/5.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/6.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/7.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/8.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Normals/9.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Views/1.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/Views/10.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 0 - Querying/players/4.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 1 - Relating/dese/12.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 1 - Relating/moneyball/12.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 1 - Relating/moneyball/2.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 2 - Designing/atl/schema.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 2 - Designing/donuts/schema.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 3 - Writing/dont-panic/hack.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 3 - Writing/dont-panic/reset.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 3 - Writing/meteorites/import.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/available.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/frequently_reviewed.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/june_vacancies.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/no_descriptions.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/bnb/one_bedrooms.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/by_district.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/most_populated.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/rural.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/census/total.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/problems/Lecture 4 - Viewing/private/private.sql" dialect="SQLite" />
+    <file url="PROJECT" dialect="SQLite" />
+  </component>
+</project>
