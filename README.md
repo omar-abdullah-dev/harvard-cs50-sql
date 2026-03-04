@@ -33,7 +33,8 @@ harvard-cs50-sql/
 │   ├── Lecture 1/             # Relationships and joins
 │   ├── Lecture 2/             # Database design
 │   ├── Lecture 3/             # Writing and modifying data
-│   └── Lecture 4/             # Views and optimization
+│   ├── Lecture 4/             # Views and optimization
+│   └── Lecture 5/             # Performance optimization and concurrency
 │
 ├── 🎯 problems/                # Problem sets with solutions
 │   ├── Lecture 0 - Querying/
@@ -71,7 +72,8 @@ harvard-cs50-sql/
 │   ├── sets/                 # UNION, INTERSECT, EXCEPT
 │   ├── subqueries/           # Nested queries
 │   ├── views/                # Views, CTEs, soft deletions (Lecture 4)
-│   └── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3)
+│   ├── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3)
+│   └── optimizing/           # Indexes, VACUUM, transactions, concurrency (Lecture 5)
 │
 ├── 💾 schemas/                 # Database files (.db)
 │   ├── Lecture 0/            # Practice databases (cyberchase.db, normals.db, players.db, views.db)
@@ -180,12 +182,21 @@ harvard-cs50-sql/
 ---
 
 ### Lecture 5: Optimizing
-**Advanced performance optimization** *(Lecture slides available, notes coming soon)*
-- Query performance analysis
-- Index optimization strategies
-- Query execution plans
-- Database tuning techniques
-- Advanced indexing concepts
+**Advanced performance optimization and concurrency**
+- Creating and dropping indexes
+- B-Tree data structures
+- Query execution plans with `EXPLAIN QUERY PLAN`
+- Space and time trade-offs
+- Partial indexes for specific queries
+- `VACUUM` command to reclaim space
+- ACID transactions (Atomicity, Consistency, Isolation, Durability)
+- Concurrency and database locking
+- Race conditions and prevention
+- Timing queries with `.timer on`
+
+**Database:** IMDb (movies.db) - Large-scale movie database with millions of records
+
+**Practice Problems:** Coming soon
 
 ---
 
@@ -272,10 +283,12 @@ Week 5: Lecture 4 (Viewing)
   ├── Review Source Code/4-Viewing/
   └── Complete problems/Lecture 4 - Viewing/
 
-Week 6: Lecture 5 (Optimizing) - Coming Soon
+Week 6: Lecture 5 (Optimizing)
   ├── Watch lecture + review slides
-  ├── Slides available in Lecture Slides/
-  └── Notes and problems to be added
+  ├── Read notes/Lecture 5/
+  ├── Practice with queries/optimizing/
+  ├── Review Source Code/5-Optimizing/
+  └── Complete practice problems (when available)
 ```
 
 ---
