@@ -26,7 +26,8 @@ harvard-cs50-sql/
 │   ├── 1- Relating.md
 │   ├── 2- Desiging.md
 │   ├── 3- Writing.md
-│   └── 4- Viewing.md
+│   ├── 4- Viewing.md
+│   └── 5- Optimizing.md
 │
 ├── 📓 notes/                   # Detailed lecture notes
 │   ├── Lecture 0/             # Querying fundamentals
