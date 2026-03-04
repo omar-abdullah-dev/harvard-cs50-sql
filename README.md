@@ -18,7 +18,8 @@ harvard-cs50-sql/
 │   ├── lecture 1 - Relating.pdf
 │   ├── lecture 2 - Designing.pdf
 │   ├── lecture 3 - Writing.pdf
-│   └── lecture 4 - Viewing.pdf
+│   ├── lecture 4 - Viewing.pdf
+│   └── lecture 5 - Optimizing.pdf
 │
 ├── 📝 Lectures Quick view/     # Quick reference summaries
 │   ├── 0- Querying.md
@@ -73,11 +74,11 @@ harvard-cs50-sql/
 │   └── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3)
 │
 ├── 💾 schemas/                 # Database files (.db)
-│   ├── Lecture 0/            # Practice databases
-│   ├── Lecture 1/            # Relational databases
-│   ├── Lecture 2/            # Design examples
-│   ├── Lecture 3/            # Writing exercises
-│   └── Lecture 4/            # BNB, Census and Private Eye databases
+│   ├── Lecture 0/            # Practice databases (cyberchase.db, normals.db, players.db, views.db)
+│   ├── Lecture 1/            # Relational databases (dese/, moneyball/, packages/)
+│   ├── Lecture 2/            # Design examples (ATL/, connect/, donuts/)
+│   ├── Lecture 3/            # Writing exercises (dont-panic/, meteorites/)
+│   └── Lecture 4/            # Viewing databases (bnb/, census/, private/)
 │
 ├── 📦 Source Code/            # Official course materials
 │   ├── 0-Querying/
@@ -178,6 +179,16 @@ harvard-cs50-sql/
 
 ---
 
+### Lecture 5: Optimizing
+**Advanced performance optimization** *(Lecture slides available, notes coming soon)*
+- Query performance analysis
+- Index optimization strategies
+- Query execution plans
+- Database tuning techniques
+- Advanced indexing concepts
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -260,6 +271,11 @@ Week 5: Lecture 4 (Viewing)
   ├── Practice with queries/views/
   ├── Review Source Code/4-Viewing/
   └── Complete problems/Lecture 4 - Viewing/
+
+Week 6: Lecture 5 (Optimizing) - Coming Soon
+  ├── Watch lecture + review slides
+  ├── Slides available in Lecture Slides/
+  └── Notes and problems to be added
 ```
 
 ---
@@ -301,17 +317,13 @@ Comprehensive examples for data modification and automation:
 
 ## 🔧 Useful SQL Commands
 
-````
+### Basic Commands
 ```sql
 .open database.db          -- Open a database
 .tables                    -- List all tables
 .schema table_name         -- Show table structure
 .mode column               -- Format output as columns
 .headers on                -- Show column headers
-```
-
-### Query Execution
-```sql
 .read file.sql             -- Execute SQL from file
 .output results.txt        -- Save output to file
 .quit                      -- Exit SQLite
@@ -438,7 +450,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 📅 Last Updated
 
-March 1, 2026
+March 4, 2026
 
 ---
 
