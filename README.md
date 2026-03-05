@@ -58,11 +58,13 @@ harvard-cs50-sql/
 │   │   ├── dont-panic/       # Database manipulation
 │   │   └── meteorites/       # Data import and cleaning
 │   │
+│   ├── Lecture 4 - Viewing/
+│   │   ├── bnb/              # Airbnb data views (5 problems)
+│   │   ├── census/           # Census data views (4 problems)
+│   │   └── private/          # The Private Eye mystery (1 problem)
 │   │
-│   └── Lecture 4 - Viewing/
-│       ├── bnb/              # Airbnb data views (5 problems)
-│       ├── census/           # Census data views (4 problems)
-│       └── private/          # The Private Eye mystery (1 problem)
+│   └── Lecture 5 - Optimizing/
+│       └── snap/             # Social network optimization (4 problems)
 │
 ├── 🔍 queries/                 # Reusable SQL query templates
 │   ├── aggregations/         # AVG, COUNT, MIN, MAX, SUM
@@ -197,7 +199,8 @@ harvard-cs50-sql/
 
 **Database:** IMDb (movies.db) - Large-scale movie database with millions of records
 
-**Practice Problems:** Coming soon
+**Practice Problems:**
+- **Snap** (4 problems): Optimize a social media database with indexing strategies
 
 ---
 
@@ -364,6 +367,7 @@ Comprehensive examples for data modification and automation:
 | BNB | Viewing | Views | ⭐⭐ Medium |
 | Census | Viewing | Views | ⭐⭐ Medium |
 | Private | Viewing | Mystery | ⭐⭐⭐ Hard |
+| Snap | Optimizing | Indexes | ⭐⭐⭐ Hard |
 
 ---
 
