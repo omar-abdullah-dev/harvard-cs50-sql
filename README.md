@@ -64,33 +64,35 @@ harvard-cs50-sql/
 │   │   └── private/          # The Private Eye mystery (1 problem)
 │   │
 │   └── Lecture 5 - Optimizing/
-│       └── snap/             # Social network optimization (4 problems)
+│       └── snap/             # Social network optimization (5 problems)
 │
 ├── 🔍 queries/                 # Reusable SQL query templates
 │   ├── aggregations/         # AVG, COUNT, MIN, MAX, SUM
 │   ├── basic/                # SELECT, WHERE, ORDER BY, LIKE, DISTINCT
-│   ├── designing/            # CREATE, ALTER, DROP
+│   ├── designing/            # CREATE, ALTER, DROP, constraints
 │   ├── groups/               # GROUP BY, HAVING
-│   ├── joins/                # INNER, LEFT, FULL joins
+│   ├── joins/                # INNER, LEFT, FULL, NATURAL joins
 │   ├── sets/                 # UNION, INTERSECT, EXCEPT
 │   ├── subqueries/           # Nested queries
-│   ├── views/                # Views, CTEs, soft deletions (Lecture 4)
-│   ├── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3)
-│   └── optimizing/           # Indexes, VACUUM, transactions, concurrency (Lecture 5)
+│   ├── views/                # Views, CTEs, soft deletions (Lecture 4) - 8 files + README
+│   ├── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3) - 6 files + README
+│   └── optimizing/           # Indexes, VACUUM, transactions, concurrency (Lecture 5) - 8 files + README
 │
 ├── 💾 schemas/                 # Database files (.db)
 │   ├── Lecture 0/            # Practice databases (cyberchase.db, normals.db, players.db, views.db)
 │   ├── Lecture 1/            # Relational databases (dese/, moneyball/, packages/)
 │   ├── Lecture 2/            # Design examples (ATL/, connect/, donuts/)
 │   ├── Lecture 3/            # Writing exercises (dont-panic/, meteorites/)
-│   └── Lecture 4/            # Viewing databases (bnb/, census/, private/)
+│   ├── Lecture 4/            # Viewing databases (bnb/, census/, private/)
+│   └── Lecture 5/            # Optimization databases (snap/)
 │
 ├── 📦 Source Code/            # Official course materials
 │   ├── 0-Querying/
 │   ├── 1-Relating/
 │   ├── 2-Designing/
 │   ├── 3-Writing/
-│   └── 4-Viewing/
+│   ├── 4-Viewing/
+│   └── 5-Optimizing/
 │
 ├── 📋 summaries/              # Additional SQL references
 │   ├── SQL-APNA College.pdf
@@ -197,10 +199,8 @@ harvard-cs50-sql/
 - Race conditions and prevention
 - Timing queries with `.timer on`
 
-**Database:** IMDb (movies.db) - Large-scale movie database with millions of records
-
 **Practice Problems:**
-- **Snap** (4 problems): Optimize a social media database with indexing strategies
+- **Snap** (5 problems): Optimize a social media database with indexing strategies
 
 ---
 
@@ -292,7 +292,7 @@ Week 6: Lecture 5 (Optimizing)
   ├── Read notes/Lecture 5/
   ├── Practice with queries/optimizing/
   ├── Review Source Code/5-Optimizing/
-  └── Complete practice problems (when available)
+  └── Complete problems/Lecture 5 - Optimizing/
 ```
 
 ---
@@ -312,6 +312,18 @@ Comprehensive examples for working with views, CTEs, and advanced patterns:
 - **view_management.sql** - Creating, dropping, and managing views
 - **README.md** - Complete guide with best practices and comparisons
 
+### **optimizing/** (Lecture 5 - NEW! ✨)
+Comprehensive examples for database performance optimization:
+- **creating_indexes.sql** - Basic, multi-column, covering, and partial indexes
+- **dropping_indexes.sql** - Removing indexes and reclaiming space
+- **explain_query_plan.sql** - Understanding query execution plans (SCAN vs SEARCH)
+- **timing_queries.sql** - Measuring query performance with .timer
+- **vacuum.sql** - Reclaiming unused database space and defragmentation
+- **transactions.sql** - ACID properties, BEGIN/COMMIT/ROLLBACK, savepoints
+- **concurrency_locking.sql** - Database locks, race conditions, isolation levels
+- **README.md** - Complete optimization guide with best practices
+- **SUMMARY.md** - Quick reference for optimization techniques
+
 ### **writing/** (Lecture 3 - NEW! ✨)
 Comprehensive examples for data modification and automation:
 - **insert.sql** - INSERT statements, bulk inserts, CSV imports
@@ -329,6 +341,7 @@ Comprehensive examples for data modification and automation:
 - **subqueries/** - Nested queries and IN keyword
 - **sets/** - UNION, INTERSECT, EXCEPT operations
 - **designing/** - CREATE, ALTER, DROP table operations
+- **optimizing/** - Indexes, VACUUM, query plans, transactions, concurrency
 
 ---
 
@@ -364,10 +377,10 @@ Comprehensive examples for data modification and automation:
 | Donuts | Designing | Schema | ⭐⭐ Medium |
 | Don't Panic | Writing | Security | ⭐⭐ Medium |
 | Meteorites | Writing | Import | ⭐⭐⭐ Hard |
-| BNB | Viewing | Views | ⭐⭐ Medium |
-| Census | Viewing | Views | ⭐⭐ Medium |
-| Private | Viewing | Mystery | ⭐⭐⭐ Hard |
-| Snap | Optimizing | Indexes | ⭐⭐⭐ Hard |
+| BNB | Viewing | 5 | ⭐⭐ Medium |
+| Census | Viewing | 4 | ⭐⭐ Medium |
+| Private | Viewing | 1 | ⭐⭐⭐ Hard |
+| Snap | Optimizing | 5 | ⭐⭐⭐ Hard |
 
 ---
 
@@ -402,6 +415,10 @@ Comprehensive examples for data modification and automation:
 - ✅ Common Table Expressions (CTEs)
 - ✅ Query performance optimization
 - ✅ Indexes and query planning
+- ✅ EXPLAIN QUERY PLAN analysis
+- ✅ VACUUM for space management
+- ✅ Concurrency and locking mechanisms
+- ✅ Soft deletions with INSTEAD OF triggers
 
 ---
 
@@ -468,7 +485,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 📅 Last Updated
 
-March 4, 2026
+March 6, 2026
 
 ---
 
