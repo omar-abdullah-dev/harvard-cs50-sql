@@ -1,11 +1,11 @@
-SELECT f1.friend_id FROM friends f1
-JOIN friends f2
-   ON f2.friend_id =f2.friend_id
-WHERE f1.user_id =(
+SELECT friends.friend_id FROM friends
+WHERE user_id =(
     SELECT id FROM users
-              WHERE username= 'lovelytrust487'
-    )
-AND f2.user_id = (
+    WHERE username= 'lovelytrust487'
+)
+INTERSECT
+SELECT friends.friend_id FROM friends
+WHERE user_id = (
     SELECT id FROM users
-              WHERE username ='lovelytrust487'
-    );
+    WHERE username ='exceptionalinspiration482'
+);
