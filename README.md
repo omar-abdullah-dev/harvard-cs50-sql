@@ -74,9 +74,9 @@ harvard-cs50-sql/
 │   ├── joins/                # INNER, LEFT, FULL, NATURAL joins
 │   ├── sets/                 # UNION, INTERSECT, EXCEPT
 │   ├── subqueries/           # Nested queries
-│   ├── views/                # Views, CTEs, soft deletions (Lecture 4) - 8 files + README
+│   ├── views/                # Views, CTEs, soft deletions (Lecture 4) - 8 files + README + SUMMARY
 │   ├── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3) - 6 files + README
-│   └── optimizing/           # Indexes, VACUUM, transactions, concurrency (Lecture 5) - 8 files + README
+│   └── optimizing/           # Indexes, VACUUM, transactions, concurrency (Lecture 5) - 8 files + README + SUMMARY
 │
 ├── 💾 schemas/                 # Database files (.db)
 │   ├── Lecture 0/            # Practice databases (cyberchase.db, normals.db, players.db, views.db)
@@ -311,6 +311,7 @@ Comprehensive examples for working with views, CTEs, and advanced patterns:
 - **soft_deletions.sql** - Soft delete patterns with INSTEAD OF triggers
 - **view_management.sql** - Creating, dropping, and managing views
 - **README.md** - Complete guide with best practices and comparisons
+- **LECTURE_4_SUMMARY.md** - Comprehensive lecture summary with patterns and examples
 
 ### **optimizing/** (Lecture 5 - NEW! ✨)
 Comprehensive examples for database performance optimization:
@@ -485,7 +486,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 📅 Last Updated
 
-March 6, 2026
+March 7, 2026
 
 ---
 
