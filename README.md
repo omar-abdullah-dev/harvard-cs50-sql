@@ -27,7 +27,8 @@ harvard-cs50-sql/
 │   ├── 2- Desiging.md
 │   ├── 3- Writing.md
 │   ├── 4- Viewing.md
-│   └── 5- Optimizing.md
+│   ├── 5- Optimizing.md
+│   └── 6- Scaling.md
 │
 ├── 📓 notes/                   # Detailed lecture notes
 │   ├── Lecture 0/             # Querying fundamentals
@@ -35,7 +36,8 @@ harvard-cs50-sql/
 │   ├── Lecture 2/             # Database design
 │   ├── Lecture 3/             # Writing and modifying data
 │   ├── Lecture 4/             # Views and optimization
-│   └── Lecture 5/             # Performance optimization and concurrency
+│   ├── Lecture 5/             # Performance optimization and concurrency
+│   └── Lecture 6/             # Scaling with MySQL and PostgreSQL
 │
 ├── 🎯 problems/                # Problem sets with solutions
 │   ├── Lecture 0 - Querying/
@@ -76,7 +78,8 @@ harvard-cs50-sql/
 │   ├── subqueries/           # Nested queries
 │   ├── views/                # Views, CTEs, soft deletions (Lecture 4) - 8 files + README + SUMMARY
 │   ├── writing/              # INSERT, UPDATE, DELETE, Triggers (Lecture 3) - 6 files + README
-│   └── optimizing/           # Indexes, VACUUM, transactions, concurrency (Lecture 5) - 8 files + README + SUMMARY
+│   ├── optimizing/           # Indexes, VACUUM, transactions, concurrency (Lecture 5) - 8 files + README + SUMMARY
+│   └── scaling/              # MySQL, PostgreSQL, stored procedures, replication (Lecture 6) - 12 files + README
 │
 ├── 💾 schemas/                 # Database files (.db)
 │   ├── Lecture 0/            # Practice databases (cyberchase.db, normals.db, players.db, views.db)
@@ -92,7 +95,8 @@ harvard-cs50-sql/
 │   ├── 2-Designing/
 │   ├── 3-Writing/
 │   ├── 4-Viewing/
-│   └── 5-Optimizing/
+│   ├── 5-Optimizing/
+│   └── 6-Scaling/
 │
 ├── 📋 summaries/              # Additional SQL references
 │   ├── SQL-APNA College.pdf
@@ -204,6 +208,27 @@ harvard-cs50-sql/
 
 ---
 
+### Lecture 6: Scaling
+**Scale databases using MySQL and PostgreSQL**
+- Database servers vs embedded databases (SQLite)
+- MySQL data types (TINYINT, VARCHAR, ENUM, DECIMAL, AUTO_INCREMENT)
+- PostgreSQL data types (SERIAL, custom ENUM types, NUMERIC)
+- Creating tables in MySQL and PostgreSQL
+- Altering tables with MODIFY command
+- Stored procedures with parameters
+- Vertical vs horizontal scaling
+- Replication models (single-leader, multi-leader, leaderless)
+- Synchronous vs asynchronous replication
+- Sharding and avoiding hotspots
+- Access control and user privileges
+- SQL injection prevention with prepared statements
+- Single points of failure
+
+**Practice Problems:**
+- No specific problem set - Focus on understanding MySQL/PostgreSQL syntax and scaling concepts
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -293,6 +318,15 @@ Week 6: Lecture 5 (Optimizing)
   ├── Practice with queries/optimizing/
   ├── Review Source Code/5-Optimizing/
   └── Complete problems/Lecture 5 - Optimizing/
+
+Week 7: Lecture 6 (Scaling)
+  ├── Watch lecture + review slides
+  ├── Read notes/Lecture 6/
+  ├── Practice with queries/scaling/
+  ├── Review Source Code/6-Scaling/
+  ├── Install MySQL and PostgreSQL
+  ├── Convert SQLite databases to MySQL/PostgreSQL
+  └── Experiment with stored procedures and replication
 ```
 
 ---
@@ -325,7 +359,22 @@ Comprehensive examples for database performance optimization:
 - **README.md** - Complete optimization guide with best practices
 - **SUMMARY.md** - Quick reference for optimization techniques
 
-### **writing/** (Lecture 3 - NEW! ✨)
+### **scaling/** (Lecture 6 - NEW! ✨)
+Comprehensive examples for MySQL, PostgreSQL, and database scaling:
+- **mysql_connection.sql** - Connecting to MySQL server and basic commands
+- **mysql_data_types.sql** - MySQL-specific data types (INT, VARCHAR, ENUM, DECIMAL, etc.)
+- **mysql_mbta_schema.sql** - Complete MBTA database schema in MySQL
+- **alter_table_mysql.sql** - Altering tables in MySQL (more powerful than SQLite)
+- **postgresql_connection.sql** - Connecting to PostgreSQL and basic commands
+- **postgresql_data_types.sql** - PostgreSQL data types (SERIAL, custom ENUM types)
+- **postgresql_mbta_schema.sql** - Complete MBTA database schema in PostgreSQL
+- **stored_procedures.sql** - Creating stored procedures with parameters, loops, conditions
+- **access_control.sql** - User management, privileges, and role-based access
+- **sql_injection_prevention.sql** - Prepared statements and security best practices
+- **replication_concepts.sql** - Replication models, sharding, scaling strategies
+- **README.md** - Complete guide with MySQL vs PostgreSQL comparisons
+
+### Other Query Folders:
 Comprehensive examples for data modification and automation:
 - **insert.sql** - INSERT statements, bulk inserts, CSV imports
 - **update.sql** - UPDATE with calculations, subqueries, CASE statements
@@ -342,7 +391,6 @@ Comprehensive examples for data modification and automation:
 - **subqueries/** - Nested queries and IN keyword
 - **sets/** - UNION, INTERSECT, EXCEPT operations
 - **designing/** - CREATE, ALTER, DROP table operations
-- **optimizing/** - Indexes, VACUUM, query plans, transactions, concurrency
 
 ---
 
@@ -421,12 +469,28 @@ Comprehensive examples for data modification and automation:
 - ✅ Concurrency and locking mechanisms
 - ✅ Soft deletions with INSTEAD OF triggers
 
+### Scaling & Advanced Features
+- ✅ MySQL data types and syntax
+- ✅ PostgreSQL data types and custom ENUM types
+- ✅ Stored procedures with parameters
+- ✅ Vertical and horizontal scaling
+- ✅ Replication (single-leader, multi-leader, leaderless)
+- ✅ Synchronous vs asynchronous replication
+- ✅ Sharding strategies
+- ✅ Access control and user privileges
+- ✅ SQL injection prevention with prepared statements
+- ✅ Database server configuration
+
 ---
 
 ## 🛠️ Tools & Resources
 
 ### Recommended Tools
 - **[DB Browser for SQLite](https://sqlitebrowser.org/)** - Visual database management
+- **[MySQL](https://www.mysql.com/)** - MySQL database server for scaling
+- **[PostgreSQL](https://www.postgresql.org/)** - PostgreSQL database server
+- **[MySQL Workbench](https://www.mysql.com/products/workbench/)** - Visual tool for MySQL
+- **[pgAdmin](https://www.pgadmin.org/)** - Visual tool for PostgreSQL
 - **[SQLite Online](https://sqliteonline.com/)** - Browser-based SQL practice
 - **[SQL Fiddle](http://sqlfiddle.com/)** - Test queries online
 - **[SQLite Documentation](https://www.sqlite.org/docs.html)** - Official reference
@@ -486,7 +550,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 📅 Last Updated
 
-March 7, 2026
+March 9, 2026
 
 ---
 
