@@ -198,180 +198,264 @@ SELECT * FROM "2022";
 
 ---
 
-## 7️⃣ Securing with Views
+## 📖 Complete SQL Syntax Reference
 
-Hide **Personally Identifiable Information (PII)** while sharing data.
-
-### Original Table (contains PII)
-
-| id | origin | destination | rider |
-|----|--------|-------------|-------|
-| 1 | Boston | New York | Alice |
-| 2 | Seattle | Portland | Bob |
-
-### Secured View (anonymized)
-
+### CREATE VIEW
 ```sql
-CREATE VIEW "analysis" AS
-SELECT "id", "origin", "destination", 'Anonymous' AS "rider" 
-FROM "rides";
+-- Basic view
+CREATE VIEW view_name AS
+SELECT column1, column2
+FROM table_name
+WHERE condition;
+
+-- View with JOIN
+CREATE VIEW view_name AS
+SELECT t1.column1, t2.column2
+FROM table1 t1
+JOIN table2 t2 ON t1.id = t2.foreign_id;
+
+-- View with aggregation
+CREATE VIEW view_name AS
+SELECT column1, COUNT(*) AS count, AVG(column2) AS average
+FROM table_name
+GROUP BY column1;
+
+-- View with ORDER BY
+CREATE VIEW view_name AS
+SELECT column1, column2
+FROM table_name
+ORDER BY column1 DESC;
+
+-- Complex view with multiple joins and aggregation
+CREATE VIEW sales_summary AS
+SELECT 
+    p.name AS product_name,
+    c.name AS category_name,
+    COUNT(s.id) AS total_sales,
+    SUM(s.amount) AS total_revenue
+FROM products p
+JOIN categories c ON p.category_id = c.id
+LEFT JOIN sales s ON p.id = s.product_id
+GROUP BY p.id, c.id;
 ```
 
-Result:
-
-| id | origin | destination | rider |
-|----|--------|-------------|-------|
-| 1 | Boston | New York | Anonymous |
-| 2 | Seattle | Portland | Anonymous |
-
-⚠️ **Note:** SQLite doesn't enforce access control — users can still query the original table. Use database permissions for true security.
-
----
-
-## 8️⃣ Soft Deletions with Views
-
-**Soft deletion** = Mark rows as deleted instead of removing them.
-
-### Implementation
-
-**Step 1:** Add `deleted` column
-
+### CREATE TEMPORARY VIEW
 ```sql
-ALTER TABLE "collections" 
-ADD COLUMN "deleted" INTEGER DEFAULT 0;
+-- Temporary view (exists only for current session)
+CREATE TEMPORARY VIEW temp_view_name AS
+SELECT column1, column2
+FROM table_name
+WHERE condition;
+
+-- Short form
+CREATE TEMP VIEW temp_view_name AS
+SELECT column1, column2
+FROM table_name;
 ```
 
-**Step 2:** Soft delete a row
-
+### DROP VIEW
 ```sql
-UPDATE "collections" 
-SET "deleted" = 1 
-WHERE "title" = 'Farmers working at dawn';
+-- Remove a view
+DROP VIEW view_name;
+
+-- Remove if exists (no error if doesn't exist)
+DROP VIEW IF EXISTS view_name;
+
+-- Drop temporary view
+DROP VIEW IF EXISTS temp_view_name;
 ```
 
-**Step 3:** Create view of non-deleted rows
-
+### Common Table Expressions (CTE)
 ```sql
-CREATE VIEW "current_collections" AS
-SELECT "id", "title", "accession_number", "acquired" 
-FROM "collections" 
-WHERE "deleted" = 0;
-```
-
----
-
-## 9️⃣ INSTEAD OF Triggers
-
-Views are read-only by default, but **INSTEAD OF triggers** let you modify underlying tables through views.
-
-### Trigger for Deleting (Soft Delete)
-
-```sql
-CREATE TRIGGER "delete"
-INSTEAD OF DELETE ON "current_collections"
-FOR EACH ROW
-BEGIN
-    UPDATE "collections" SET "deleted" = 1 
-    WHERE "id" = OLD."id";
-END;
-```
-
-Now you can "delete" from the view:
-
-```sql
-DELETE FROM "current_collections" 
-WHERE "title" = 'Imaginative landscape';
-```
-
-### Trigger for Inserting (Existing Row)
-
-If row already exists but was soft-deleted, restore it:
-
-```sql
-CREATE TRIGGER "insert_when_exists"
-INSTEAD OF INSERT ON "current_collections"
-FOR EACH ROW 
-WHEN NEW."accession_number" IN (
-    SELECT "accession_number" FROM "collections"
+-- Basic CTE
+WITH cte_name AS (
+    SELECT column1, column2
+    FROM table_name
+    WHERE condition
 )
-BEGIN
-    UPDATE "collections" 
-    SET "deleted" = 0 
-    WHERE "accession_number" = NEW."accession_number";
-END;
+SELECT * FROM cte_name;
+
+-- Multiple CTEs
+WITH 
+cte1 AS (
+    SELECT column1, column2 FROM table1
+),
+cte2 AS (
+    SELECT column1, column3 FROM table2
+)
+SELECT cte1.column1, cte1.column2, cte2.column3
+FROM cte1
+JOIN cte2 ON cte1.column1 = cte2.column1;
+
+-- CTE with aggregation
+WITH average_ratings AS (
+    SELECT book_id, AVG(rating) AS avg_rating
+    FROM ratings
+    GROUP BY book_id
+)
+SELECT books.title, average_ratings.avg_rating
+FROM books
+JOIN average_ratings ON books.id = average_ratings.book_id
+WHERE average_ratings.avg_rating > 4.0;
+
+-- Recursive CTE (advanced)
+WITH RECURSIVE counter(n) AS (
+    SELECT 1
+    UNION ALL
+    SELECT n + 1 FROM counter WHERE n < 10
+)
+SELECT * FROM counter;
 ```
 
-### Trigger for Inserting (New Row)
-
-If row doesn't exist, insert it:
-
+### Querying Views
 ```sql
-CREATE TRIGGER "insert_when_new"
-INSTEAD OF INSERT ON "current_collections"
-FOR EACH ROW
-WHEN NEW."accession_number" NOT IN (
-    SELECT "accession_number" FROM "collections"
-)
-BEGIN
-    INSERT INTO "collections" ("title", "accession_number", "acquired")
-    VALUES (NEW."title", NEW."accession_number", NEW."acquired");
-END;
+-- Query like a regular table
+SELECT * FROM view_name;
+
+-- With WHERE clause
+SELECT * FROM view_name WHERE column1 > 100;
+
+-- With JOIN
+SELECT v.column1, t.column2
+FROM view_name v
+JOIN table_name t ON v.id = t.view_id;
+
+-- With aggregation
+SELECT column1, COUNT(*) 
+FROM view_name
+GROUP BY column1;
+```
+
+### View Patterns for Different Purposes
+
+#### 1. Simplifying Complex Queries
+```sql
+-- Instead of this complex query every time:
+SELECT users.name, orders.total, products.name
+FROM users
+JOIN orders ON users.id = orders.user_id
+JOIN order_items ON orders.id = order_items.order_id
+JOIN products ON order_items.product_id = products.id;
+
+-- Create a view once:
+CREATE VIEW user_orders AS
+SELECT users.name AS user_name, orders.total, products.name AS product_name
+FROM users
+JOIN orders ON users.id = orders.user_id
+JOIN order_items ON orders.id = order_items.order_id
+JOIN products ON order_items.product_id = products.id;
+
+-- Query simply:
+SELECT * FROM user_orders WHERE user_name = 'John';
+```
+
+#### 2. Aggregating Data
+```sql
+-- Pre-aggregated data view
+CREATE VIEW daily_sales AS
+SELECT 
+    DATE(order_date) AS sale_date,
+    COUNT(*) AS total_orders,
+    SUM(total) AS total_revenue,
+    AVG(total) AS average_order_value
+FROM orders
+GROUP BY DATE(order_date);
+
+-- Easy to query
+SELECT * FROM daily_sales WHERE sale_date = '2024-01-15';
+```
+
+#### 3. Securing Data
+```sql
+-- Hide sensitive columns
+CREATE VIEW public_users AS
+SELECT id, username, email, created_at
+FROM users;
+-- Password, social_security, etc. are hidden
+
+-- Grant access to view, not base table
+-- (In production databases with access control)
+```
+
+#### 4. Partitioning Data
+```sql
+-- Active users only
+CREATE VIEW active_users AS
+SELECT * FROM users WHERE status = 'active';
+
+-- Recent orders
+CREATE VIEW recent_orders AS
+SELECT * FROM orders WHERE order_date >= DATE('now', '-30 days');
+
+-- High-value customers
+CREATE VIEW vip_customers AS
+SELECT user_id, SUM(total) AS lifetime_value
+FROM orders
+GROUP BY user_id
+HAVING lifetime_value > 10000;
+```
+
+### Checking if View Exists
+```sql
+-- SQLite: Check schema
+.schema view_name
+
+-- Or query sqlite_master
+SELECT name FROM sqlite_master 
+WHERE type = 'view' AND name = 'view_name';
+
+-- List all views
+SELECT name FROM sqlite_master WHERE type = 'view';
+```
+
+### Replacing a View
+```sql
+-- Drop and recreate
+DROP VIEW IF EXISTS view_name;
+CREATE VIEW view_name AS
+SELECT column1, column2 FROM table_name;
+
+-- Note: SQLite doesn't have CREATE OR REPLACE VIEW
+-- Must drop first, then create
 ```
 
 ---
 
-## 🎯 Key Concepts from Lecture 4
+## 💡 Best Practices for Views
 
-- **Views** are virtual tables that simplify complex queries
-- Views **don't store data** — they query underlying tables each time
-- Use views to **simplify**, **aggregate**, **partition**, and **secure** data
-- **Temporary views** exist only during your connection
-- **CTEs** exist for a single query only
-- Views automatically show **updated data** from underlying tables
-- **INSTEAD OF triggers** let you insert/delete through views
-- Combine views with soft deletions for flexible data management
+1. **Use descriptive names** - `monthly_sales_summary` not `view1`
+2. **Document complex views** - Add comments explaining the logic
+3. **Consider performance** - Views are re-executed each time
+4. **Use CTEs for one-off queries** - Don't clutter schema
+5. **Secure sensitive data** - Views can hide columns
+6. **Test before deployment** - Ensure views return correct data
+7. **Regular views for common queries** - Temporary for testing
+8. **Don't nest too deeply** - View of a view of a view gets slow
 
 ---
 
-## 📋 Quick Reference
+## ⚠️ View Limitations
 
-### Create View
-```sql
-CREATE VIEW "view_name" AS
-SELECT columns FROM table WHERE condition;
-```
+- Views don't store data (always query underlying tables)
+- Complex views can be slow
+- Can't always UPDATE/DELETE through views
+- Schema changes to base tables may break views
+- No indexes on views (indexes are on base tables)
 
-### Create Temporary View
-```sql
-CREATE TEMPORARY VIEW "view_name" AS
-SELECT columns FROM table WHERE condition;
-```
+---
 
-### Common Table Expression (CTE)
-```sql
-WITH "cte_name" AS (
-    SELECT columns FROM table
-)
-SELECT * FROM "cte_name";
-```
+## 🎯 When to Use Each Type
 
-### Drop View
-```sql
-DROP VIEW "view_name";
-```
+| Type | When to Use |
+|------|-------------|
+| **Regular View** | Frequently used query, permanent simplification |
+| **Temporary View** | Testing, session-specific data, prototyping |
+| **CTE** | One-time complex query, intermediate results |
 
-### INSTEAD OF Trigger
-```sql
-CREATE TRIGGER "trigger_name"
-INSTEAD OF DELETE ON "view_name"
-FOR EACH ROW
-BEGIN
-    -- SQL statements
-END;
-```
+---
 
-### Join Tables (for Views)
-```sql
-SELECT columns FROM table1
-JOIN table2 ON table1.id = table2.foreign_id;
-```
+## 🧑‍💻 Author
+
+**Omar Abdullah**  
+Backend Developer (Java)  
+Learning views and CTEs with Harvard CS50 SQL

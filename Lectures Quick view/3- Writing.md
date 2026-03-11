@@ -314,3 +314,300 @@ BEGIN
     -- SQL statements
 END;
 ```
+
+---
+
+## 📖 Complete SQL Syntax Reference
+
+### INSERT INTO
+```sql
+-- Insert single row
+INSERT INTO table_name (column1, column2, column3)
+VALUES (value1, value2, value3);
+
+-- Insert with auto-increment ID (omit ID column)
+INSERT INTO table_name (column1, column2)
+VALUES (value1, value2);
+
+-- Insert multiple rows
+INSERT INTO table_name (column1, column2)
+VALUES 
+(value1a, value2a),
+(value1b, value2b),
+(value1c, value2c);
+
+-- Insert from SELECT
+INSERT INTO table_name (column1, column2)
+SELECT column1, column2
+FROM another_table
+WHERE condition;
+
+-- Insert with NULL values
+INSERT INTO table_name (column1, column2)
+VALUES ('value1', NULL);
+```
+
+### DELETE
+```sql
+-- Delete all rows (DANGEROUS!)
+DELETE FROM table_name;
+
+-- Delete with condition
+DELETE FROM table_name WHERE column_name = value;
+
+-- Delete with multiple conditions
+DELETE FROM table_name 
+WHERE condition1 AND condition2;
+
+-- Delete with subquery
+DELETE FROM table_name
+WHERE column_name = (
+    SELECT column_name
+    FROM another_table
+    WHERE condition
+);
+
+-- Delete with IN
+DELETE FROM table_name
+WHERE column_name IN (value1, value2, value3);
+
+-- Delete NULL values
+DELETE FROM table_name WHERE column_name IS NULL;
+
+-- Delete with comparison
+DELETE FROM table_name WHERE date_column < '2020-01-01';
+```
+
+### UPDATE
+```sql
+-- Update all rows (DANGEROUS!)
+UPDATE table_name SET column_name = value;
+
+-- Update with condition
+UPDATE table_name 
+SET column_name = value
+WHERE condition;
+
+-- Update multiple columns
+UPDATE table_name
+SET column1 = value1,
+    column2 = value2,
+    column3 = value3
+WHERE condition;
+
+-- Update with subquery
+UPDATE table_name
+SET column_name = (
+    SELECT column_name
+    FROM another_table
+    WHERE condition
+)
+WHERE condition;
+
+-- Update with calculation
+UPDATE table_name
+SET price = price * 1.1
+WHERE category = 'premium';
+
+-- Update with CASE
+UPDATE table_name
+SET status = CASE
+    WHEN score >= 90 THEN 'Excellent'
+    WHEN score >= 70 THEN 'Good'
+    ELSE 'Needs Improvement'
+END;
+```
+
+### CREATE TRIGGER
+```sql
+-- Basic trigger structure
+CREATE TRIGGER trigger_name
+[BEFORE | AFTER | INSTEAD OF] [INSERT | UPDATE | DELETE]
+ON table_name
+BEGIN
+    -- SQL statements
+END;
+
+-- Trigger with condition
+CREATE TRIGGER trigger_name
+AFTER INSERT ON table_name
+WHEN NEW.column_name > 100
+BEGIN
+    -- SQL statements
+END;
+
+-- BEFORE DELETE trigger
+CREATE TRIGGER log_deletion
+BEFORE DELETE ON products
+BEGIN
+    INSERT INTO audit_log (action, product_name, timestamp)
+    VALUES ('DELETE', OLD.name, CURRENT_TIMESTAMP);
+END;
+
+-- AFTER INSERT trigger
+CREATE TRIGGER welcome_user
+AFTER INSERT ON users
+BEGIN
+    INSERT INTO notifications (user_id, message)
+    VALUES (NEW.id, 'Welcome to our platform!');
+END;
+
+-- AFTER UPDATE trigger
+CREATE TRIGGER track_changes
+AFTER UPDATE ON inventory
+WHEN OLD.quantity != NEW.quantity
+BEGIN
+    INSERT INTO inventory_history (product_id, old_qty, new_qty, changed_at)
+    VALUES (NEW.id, OLD.quantity, NEW.quantity, CURRENT_TIMESTAMP);
+END;
+
+-- Multiple statements in trigger
+CREATE TRIGGER complex_trigger
+AFTER INSERT ON orders
+BEGIN
+    UPDATE products SET stock = stock - NEW.quantity WHERE id = NEW.product_id;
+    INSERT INTO order_log (order_id, created_at) VALUES (NEW.id, CURRENT_TIMESTAMP);
+    UPDATE customers SET last_order_date = CURRENT_TIMESTAMP WHERE id = NEW.customer_id;
+END;
+```
+
+### DROP TRIGGER
+```sql
+-- Remove a trigger
+DROP TRIGGER trigger_name;
+
+-- Remove if exists
+DROP TRIGGER IF EXISTS trigger_name;
+```
+
+### Foreign Key Actions
+```sql
+-- ON DELETE CASCADE (delete related rows)
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY,
+    customer_id INTEGER,
+    FOREIGN KEY(customer_id) REFERENCES customers(id) ON DELETE CASCADE
+);
+
+-- ON DELETE SET NULL (set to NULL)
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY,
+    customer_id INTEGER,
+    FOREIGN KEY(customer_id) REFERENCES customers(id) ON DELETE SET NULL
+);
+
+-- ON DELETE RESTRICT (prevent deletion - default)
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY,
+    customer_id INTEGER,
+    FOREIGN KEY(customer_id) REFERENCES customers(id) ON DELETE RESTRICT
+);
+
+-- ON DELETE SET DEFAULT
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY,
+    status TEXT DEFAULT 'pending',
+    FOREIGN KEY(status) REFERENCES statuses(name) ON DELETE SET DEFAULT
+);
+
+-- ON UPDATE CASCADE (update related rows)
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY,
+    customer_id INTEGER,
+    FOREIGN KEY(customer_id) REFERENCES customers(id) 
+        ON DELETE CASCADE 
+        ON UPDATE CASCADE
+);
+```
+
+### Soft Delete Pattern
+```sql
+-- Add deleted column
+ALTER TABLE table_name ADD COLUMN deleted INTEGER DEFAULT 0;
+
+-- Or with timestamp
+ALTER TABLE table_name ADD COLUMN deleted_at NUMERIC DEFAULT NULL;
+
+-- Soft delete (mark as deleted)
+UPDATE table_name SET deleted = 1 WHERE id = 5;
+UPDATE table_name SET deleted_at = CURRENT_TIMESTAMP WHERE id = 5;
+
+-- Query active records only
+SELECT * FROM table_name WHERE deleted = 0;
+SELECT * FROM table_name WHERE deleted_at IS NULL;
+
+-- Restore soft-deleted record
+UPDATE table_name SET deleted = 0 WHERE id = 5;
+UPDATE table_name SET deleted_at = NULL WHERE id = 5;
+
+-- Permanently delete soft-deleted records
+DELETE FROM table_name WHERE deleted = 1;
+DELETE FROM table_name WHERE deleted_at IS NOT NULL;
+```
+
+### CSV Import Commands (SQLite)
+```sql
+-- Import CSV with header (skip first row)
+.import --csv --skip 1 filename.csv table_name
+
+-- Import CSV without header
+.import --csv filename.csv table_name
+
+-- Import into temporary table
+.import --csv data.csv temp
+
+-- Then move to permanent table with auto-generated IDs
+INSERT INTO permanent_table (col1, col2)
+SELECT col1, col2 FROM temp;
+
+-- Clean up
+DROP TABLE temp;
+```
+
+### Transaction Patterns
+```sql
+-- Begin transaction
+BEGIN TRANSACTION;
+
+-- Multiple operations
+INSERT INTO table1 (col) VALUES ('value');
+UPDATE table2 SET col = 'value' WHERE id = 1;
+DELETE FROM table3 WHERE id = 5;
+
+-- Commit (save changes)
+COMMIT;
+
+-- Or rollback (undo changes)
+ROLLBACK;
+```
+
+---
+
+## 💡 Best Practices for Writing Data
+
+1. **Always use transactions** for multiple related operations
+2. **Test DELETE and UPDATE** on copies first
+3. **Use WHERE clauses** - never forget them!
+4. **Validate constraints** before inserting
+5. **Use triggers sparingly** - they can make debugging hard
+6. **Consider soft deletes** for important data
+7. **Log important changes** with triggers or application code
+8. **Backup before mass updates** or deletions
+
+---
+
+## ⚠️ Common Pitfalls
+
+- Forgetting WHERE clause in UPDATE/DELETE (affects all rows!)
+- Not handling foreign key constraints before deletion
+- Triggering infinite loops with triggers
+- Not testing constraint violations
+- Ignoring transaction boundaries
+
+---
+
+## 🧑‍💻 Author
+
+**Omar Abdullah**  
+Backend Developer (Java)  
+Learning data manipulation with Harvard CS50 SQL
