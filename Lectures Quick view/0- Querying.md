@@ -119,6 +119,117 @@ JOINs will be covered in Lecture 1, including:
 
 ---
 
+## 📖 SQL Syntax Reference
+
+### SELECT
+```sql
+-- Select all columns
+SELECT * FROM table_name;
+
+-- Select specific columns
+SELECT column1, column2 FROM table_name;
+
+-- Select with alias
+SELECT column_name AS alias_name FROM table_name;
+```
+
+### WHERE
+```sql
+-- Basic filtering
+SELECT * FROM table_name WHERE column = value;
+
+-- Multiple conditions
+SELECT * FROM table_name 
+WHERE condition1 AND condition2;
+
+SELECT * FROM table_name 
+WHERE condition1 OR condition2;
+
+-- Operators: =, !=, <>, <, >, <=, >=
+```
+
+### LIMIT
+```sql
+-- Limit number of results
+SELECT * FROM table_name LIMIT 10;
+```
+
+### ORDER BY
+```sql
+-- Ascending (default)
+SELECT * FROM table_name ORDER BY column_name;
+SELECT * FROM table_name ORDER BY column_name ASC;
+
+-- Descending
+SELECT * FROM table_name ORDER BY column_name DESC;
+
+-- Multiple columns
+SELECT * FROM table_name 
+ORDER BY column1 DESC, column2 ASC;
+```
+
+### NULL Handling
+```sql
+-- Check for NULL
+SELECT * FROM table_name WHERE column_name IS NULL;
+
+-- Check for NOT NULL
+SELECT * FROM table_name WHERE column_name IS NOT NULL;
+```
+
+### LIKE (Pattern Matching)
+```sql
+-- % matches any characters
+SELECT * FROM table_name WHERE column_name LIKE '%word%';
+
+-- _ matches single character
+SELECT * FROM table_name WHERE column_name LIKE 'T____';
+
+-- Starts with
+SELECT * FROM table_name WHERE column_name LIKE 'The%';
+
+-- Ends with
+SELECT * FROM table_name WHERE column_name LIKE '%ing';
+```
+
+### BETWEEN (Ranges)
+```sql
+-- Inclusive range
+SELECT * FROM table_name 
+WHERE column_name BETWEEN value1 AND value2;
+
+-- Alternative
+SELECT * FROM table_name 
+WHERE column_name >= value1 AND column_name <= value2;
+```
+
+### Aggregate Functions
+```sql
+-- COUNT
+SELECT COUNT(*) FROM table_name;
+SELECT COUNT(column_name) FROM table_name;
+SELECT COUNT(DISTINCT column_name) FROM table_name;
+
+-- AVG
+SELECT AVG(column_name) FROM table_name;
+SELECT ROUND(AVG(column_name), 2) FROM table_name;
+
+-- MIN / MAX
+SELECT MIN(column_name) FROM table_name;
+SELECT MAX(column_name) FROM table_name;
+
+-- SUM
+SELECT SUM(column_name) FROM table_name;
+```
+
+### DISTINCT
+```sql
+-- Unique values only
+SELECT DISTINCT column_name FROM table_name;
+```
+
+---
+
 ## 🎯 Goal of Lecture 0
 
 - Understand SQL querying deeply (not memorization)

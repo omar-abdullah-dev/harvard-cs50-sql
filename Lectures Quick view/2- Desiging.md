@@ -241,3 +241,224 @@ CREATE TABLE swipes (
 - Use foreign keys to relate tables.
 - Add constraints to protect your data.
 - Think before designing — structure matters.
+
+---
+
+## 📖 Complete SQL Syntax Reference
+
+### CREATE TABLE
+```sql
+-- Basic table creation
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype
+);
+
+-- With constraints
+CREATE TABLE table_name (
+    id INTEGER,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE,
+    age INTEGER CHECK(age >= 18),
+    created_at NUMERIC DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(id)
+);
+
+-- With foreign keys
+CREATE TABLE table_name (
+    id INTEGER,
+    foreign_id INTEGER,
+    PRIMARY KEY(id),
+    FOREIGN KEY(foreign_id) REFERENCES other_table(id)
+);
+
+-- Composite primary key
+CREATE TABLE junction_table (
+    table1_id INTEGER,
+    table2_id INTEGER,
+    PRIMARY KEY(table1_id, table2_id),
+    FOREIGN KEY(table1_id) REFERENCES table1(id),
+    FOREIGN KEY(table2_id) REFERENCES table2(id)
+);
+```
+
+### ALTER TABLE
+```sql
+-- Rename table
+ALTER TABLE old_name RENAME TO new_name;
+
+-- Add column
+ALTER TABLE table_name ADD COLUMN column_name datatype;
+
+-- Add column with constraints
+ALTER TABLE table_name 
+ADD COLUMN column_name TEXT NOT NULL DEFAULT 'value';
+
+-- Rename column
+ALTER TABLE table_name 
+RENAME COLUMN old_name TO new_name;
+
+-- Drop column
+ALTER TABLE table_name DROP COLUMN column_name;
+```
+
+### DROP TABLE
+```sql
+-- Delete entire table
+DROP TABLE table_name;
+
+-- Delete if exists (no error if doesn't exist)
+DROP TABLE IF EXISTS table_name;
+```
+
+### Table Constraints
+```sql
+-- PRIMARY KEY
+PRIMARY KEY(column_name)
+PRIMARY KEY(column1, column2)  -- Composite
+
+-- FOREIGN KEY
+FOREIGN KEY(column_name) REFERENCES other_table(column_name)
+
+-- FOREIGN KEY with actions
+FOREIGN KEY(column_name) REFERENCES other_table(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+
+-- UNIQUE (table-level)
+UNIQUE(column_name)
+UNIQUE(column1, column2)  -- Composite unique
+
+-- CHECK (table-level)
+CHECK(condition)
+```
+
+### Column Constraints
+```sql
+-- NOT NULL
+column_name datatype NOT NULL
+
+-- UNIQUE
+column_name datatype UNIQUE
+
+-- CHECK
+column_name datatype CHECK(condition)
+column_name INTEGER CHECK(column_name > 0)
+column_name TEXT CHECK(column_name IN ('value1', 'value2'))
+
+-- DEFAULT
+column_name datatype DEFAULT value
+created_at NUMERIC DEFAULT CURRENT_TIMESTAMP
+status TEXT DEFAULT 'active'
+
+-- Multiple constraints
+column_name TEXT NOT NULL UNIQUE
+age INTEGER NOT NULL CHECK(age >= 18)
+```
+
+### SQLite Data Types
+```sql
+-- INTEGER types
+id INTEGER
+count SMALLINT
+big_number BIGINT
+
+-- TEXT types
+name TEXT
+description VARCHAR(255)
+fixed_code CHAR(10)
+
+-- REAL types
+price REAL
+rating DECIMAL(3,2)
+percentage FLOAT
+
+-- NUMERIC (flexible)
+date_field NUMERIC
+timestamp_field NUMERIC
+
+-- BLOB
+image_data BLOB
+file_content BLOB
+```
+
+### Common Patterns
+```sql
+-- Auto-incrementing primary key (implicit in SQLite)
+CREATE TABLE table_name (
+    id INTEGER PRIMARY KEY,  -- Automatically auto-increments
+    name TEXT
+);
+
+-- Timestamps
+CREATE TABLE table_name (
+    id INTEGER PRIMARY KEY,
+    created_at NUMERIC DEFAULT CURRENT_TIMESTAMP,
+    updated_at NUMERIC DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Enum-like values
+CREATE TABLE table_name (
+    id INTEGER PRIMARY KEY,
+    status TEXT CHECK(status IN ('pending', 'active', 'completed'))
+);
+
+-- Junction table (many-to-many)
+CREATE TABLE students_courses (
+    student_id INTEGER,
+    course_id INTEGER,
+    enrolled_at NUMERIC DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(student_id, course_id),
+    FOREIGN KEY(student_id) REFERENCES students(id),
+    FOREIGN KEY(course_id) REFERENCES courses(id)
+);
+```
+
+### Entity Relationship Types
+```sql
+-- One-to-One
+-- Person ← Profile (one person has one profile)
+CREATE TABLE profiles (
+    person_id INTEGER UNIQUE,  -- UNIQUE ensures one-to-one
+    bio TEXT,
+    FOREIGN KEY(person_id) REFERENCES persons(id)
+);
+
+-- One-to-Many
+-- Author → Books (one author, many books)
+CREATE TABLE books (
+    id INTEGER PRIMARY KEY,
+    author_id INTEGER,  -- No UNIQUE, allows multiple books per author
+    FOREIGN KEY(author_id) REFERENCES authors(id)
+);
+
+-- Many-to-Many
+-- Students ↔ Courses (students take multiple courses, courses have multiple students)
+CREATE TABLE enrollments (
+    student_id INTEGER,
+    course_id INTEGER,
+    PRIMARY KEY(student_id, course_id),
+    FOREIGN KEY(student_id) REFERENCES students(id),
+    FOREIGN KEY(course_id) REFERENCES courses(id)
+);
+```
+
+---
+
+## 💡 Best Practices
+
+1. **Always use primary keys** - Every table should have one
+2. **Normalize your data** - Avoid duplication
+3. **Use meaningful names** - `user_id` not `uid`
+4. **Add constraints** - Protect data integrity early
+5. **Document your schema** - Write comments or maintain ER diagrams
+6. **Think about relationships** - One-to-one, one-to-many, or many-to-many?
+7. **Use foreign keys** - Maintain referential integrity
+
+---
+
+## 🧑‍💻 Author
+
+**Omar Abdullah**  
+Backend Developer (Java)  
+Learning database design with Harvard CS50 SQL

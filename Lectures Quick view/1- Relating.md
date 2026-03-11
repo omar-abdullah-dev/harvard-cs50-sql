@@ -142,6 +142,133 @@ HAVING avg_rating > 4;
 
 ---
 
+## 📖 SQL Syntax Reference
+
+### Subqueries
+```sql
+-- Basic subquery
+SELECT column1 FROM table1
+WHERE column2 = (
+    SELECT column_name FROM table2
+    WHERE condition
+);
+
+-- Multi-level nesting
+SELECT title FROM books
+WHERE id IN (
+    SELECT book_id FROM authored
+    WHERE author_id = (
+        SELECT id FROM authors
+        WHERE name = 'Author Name'
+    )
+);
+```
+
+### IN Keyword
+```sql
+-- With literal values
+SELECT * FROM table_name
+WHERE column_name IN (value1, value2, value3);
+
+-- With subquery
+SELECT * FROM table_name
+WHERE column_name IN (
+    SELECT column_name FROM another_table
+);
+
+-- NOT IN
+SELECT * FROM table_name
+WHERE column_name NOT IN (value1, value2);
+```
+
+### JOIN Operations
+```sql
+-- INNER JOIN (default)
+SELECT * FROM table1
+JOIN table2 ON table1.id = table2.foreign_id;
+
+-- LEFT JOIN (keep all from left table)
+SELECT * FROM table1
+LEFT JOIN table2 ON table1.id = table2.foreign_id;
+
+-- RIGHT JOIN (keep all from right table)
+SELECT * FROM table1
+RIGHT JOIN table2 ON table1.id = table2.foreign_id;
+
+-- Multiple JOINs
+SELECT * FROM table1
+JOIN table2 ON table1.id = table2.table1_id
+JOIN table3 ON table2.id = table3.table2_id;
+
+-- NATURAL JOIN (automatic matching columns)
+SELECT * FROM table1
+NATURAL JOIN table2;
+```
+
+### Set Operations
+```sql
+-- INTERSECT (common elements)
+SELECT column FROM table1
+INTERSECT
+SELECT column FROM table2;
+
+-- UNION (all unique elements)
+SELECT column FROM table1
+UNION
+SELECT column FROM table2;
+
+-- EXCEPT (elements in first but not second)
+SELECT column FROM table1
+EXCEPT
+SELECT column FROM table2;
+```
+
+### GROUP BY and HAVING
+```sql
+-- Basic grouping
+SELECT column1, COUNT(*) 
+FROM table_name
+GROUP BY column1;
+
+-- With aggregate functions
+SELECT column1, AVG(column2) AS avg_value
+FROM table_name
+GROUP BY column1;
+
+-- Filter groups with HAVING
+SELECT column1, COUNT(*) AS count
+FROM table_name
+GROUP BY column1
+HAVING count > 5;
+
+-- GROUP BY with ORDER BY
+SELECT column1, AVG(column2) AS avg_val
+FROM table_name
+GROUP BY column1
+HAVING avg_val > 100
+ORDER BY avg_val DESC;
+```
+
+### Primary and Foreign Keys
+```sql
+-- Create table with primary key
+CREATE TABLE table_name (
+    id INTEGER,
+    column_name TEXT,
+    PRIMARY KEY(id)
+);
+
+-- Create table with foreign key
+CREATE TABLE related_table (
+    id INTEGER,
+    table_id INTEGER,
+    PRIMARY KEY(id),
+    FOREIGN KEY(table_id) REFERENCES table_name(id)
+);
+```
+
+---
+
 ## 🧠 Notes
 
 - All queries are written manually for learning purposes
