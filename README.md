@@ -192,19 +192,28 @@ harvard-cs50-sql/
 
 ### Lecture 5: Optimizing
 **Advanced performance optimization and concurrency**
-- Creating and dropping indexes
-- B-Tree data structures
-- Query execution plans with `EXPLAIN QUERY PLAN`
-- Space and time trade-offs
-- Partial indexes for specific queries
-- `VACUUM` command to reclaim space
+- Creating and dropping indexes (single column, multi-column, covering, partial)
+- B-Tree data structures for efficient lookups
+- Query execution plans with `EXPLAIN QUERY PLAN` (understanding SCAN vs SEARCH)
+- Reading query plans: SCAN TABLE (slow) vs SEARCH USING INDEX (fast) vs COVERING INDEX (fastest)
+- Space and time trade-offs: faster reads vs slower writes
+- Partial indexes for specific queries (condition-based indexing)
+- `VACUUM` command to reclaim space after deletions
+- Database integrity checks with `PRAGMA integrity_check` and `PRAGMA quick_check`
+- `ANALYZE` command to update query optimizer statistics
 - ACID transactions (Atomicity, Consistency, Isolation, Durability)
-- Concurrency and database locking
-- Race conditions and prevention
-- Timing queries with `.timer on`
+- Transaction types: DEFERRED, IMMEDIATE, EXCLUSIVE
+- Savepoints for partial rollback within transactions
+- Concurrency and database locking (UNLOCKED → SHARED → RESERVED → PENDING → EXCLUSIVE)
+- Race conditions and prevention strategies
+- Timing queries with `.timer on` (real, user, sys time)
+- Index strategies: when to index, when not to over-index
+- Performance tuning workflow: identify, analyze, optimize, verify
+
+**Key Database:** IMDb (movies.db) - Large-scale movie database for optimization practice
 
 **Practice Problems:**
-- **Snap** (5 problems): Optimize a social media database with indexing strategies
+- **Snap** (5 problems): Optimize a social media database with advanced indexing strategies
 
 ---
 
@@ -463,10 +472,19 @@ Comprehensive examples for data modification and automation:
 - ✅ CREATE VIEW for virtual tables
 - ✅ Common Table Expressions (CTEs)
 - ✅ Query performance optimization
-- ✅ Indexes and query planning
-- ✅ EXPLAIN QUERY PLAN analysis
-- ✅ VACUUM for space management
-- ✅ Concurrency and locking mechanisms
+- ✅ Creating indexes (single-column, multi-column, covering, partial)
+- ✅ B-Tree data structures
+- ✅ EXPLAIN QUERY PLAN analysis (SCAN vs SEARCH vs COVERING INDEX)
+- ✅ VACUUM for space management and defragmentation
+- ✅ Database integrity checks (PRAGMA integrity_check)
+- ✅ ANALYZE for query optimizer statistics
+- ✅ ACID transactions (BEGIN, COMMIT, ROLLBACK)
+- ✅ Transaction types (DEFERRED, IMMEDIATE, EXCLUSIVE)
+- ✅ Savepoints for partial rollback
+- ✅ Concurrency and locking mechanisms (SHARED, RESERVED, EXCLUSIVE)
+- ✅ Race condition prevention
+- ✅ Query timing and performance measurement
+- ✅ Index trade-offs: read speed vs write speed
 - ✅ Soft deletions with INSTEAD OF triggers
 
 ### Scaling & Advanced Features
@@ -550,7 +568,7 @@ This repository is for educational purposes. Course materials are property of Ha
 
 ## 📅 Last Updated
 
-March 9, 2026
+March 12, 2026
 
 ---
 
