@@ -107,9 +107,23 @@ Here are some useful tips for writing SQL code on the terminal.
 ## [`SELECT`](https://cs50.harvard.edu/sql/notes/0/#select)
 
 -   What data is actually in our database? To answer this, we will use our first SQL keyword, `SELECT`, which allows us to select some (or all) rows from a table inside the database.
+
+### General Syntax:
+```sql
+SELECT column1, column2, ...
+FROM table_name;
+```
+
+Or to select all columns:
+```sql
+SELECT *
+FROM table_name;
+```
+
+### Example:
 -   In the SQLite environment, run
 
-```
+```sql
 SELECT *
 FROM "longlist";
 ```
@@ -160,14 +174,18 @@ SQL keywords are written in capital letters. This is especially useful in improv
 ## [`LIMIT`](https://cs50.harvard.edu/sql/notes/0/#limit)
 
 -   If a database had millions of rows, it might not make sense to select all of its rows. Instead, we might want to merely take a peek at the data it contains. We use the SQL keyword `LIMIT` to specify the number of rows in the query output.
-    
 
-SELECT "title" FROM "longlist" LIMIT 10;
-
+### General Syntax:
+```sql
+SELECT column1, column2, ...
+FROM table_name
+LIMIT number;
 ```
 
-
-
+### Example:
+```sql
+SELECT "title" FROM "longlist" LIMIT 10;
+```
 
 
 This query gives us the first 10 titles in the database. The titles are ordered the same way in the output of this query as they are in the database.
@@ -176,7 +194,18 @@ This query gives us the first 10 titles in the database. The titles are ordered 
 ## [`WHERE`](https://cs50.harvard.edu/sql/notes/0/#where)
 
 - The keyword `WHERE` is used to select rows based on a condition; it will output the rows for which the specified condition is true.
-- ```
+
+### General Syntax:
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+Where condition can use operators: `=`, `!=`, `<>`, `<`, `>`, `<=`, `>=`, `AND`, `OR`, `NOT`
+
+### Example:
+```sql
 SELECT "title", "author"
 FROM "longlist"
 WHERE "year" = 2023;
@@ -235,18 +264,33 @@ Here, the parantheses indicate that the `OR` clause should be evaluated before t
 
 -   It is possible that tables may have missing data. `NULL` is a type used to indicate that certain data does not have a value, or does not exist in the table.
 -   For example, the books in our database have a translator along with an author. However, only some of the books have been translated to English. For other books, the translator value will be `NULL`.
--   Conditions used with `NULL` are `IS NULL` and `IS NOT NULL`.
--   To select the books for which translators don’t exist, we can run
 
+### General Syntax:
+```sql
+-- Check for NULL values
+SELECT column1, column2, ...
+FROM table_name
+WHERE column_name IS NULL;
+
+-- Check for NOT NULL values
+SELECT column1, column2, ...
+FROM table_name
+WHERE column_name IS NOT NULL;
 ```
+
+### Examples:
+-   Conditions used with `NULL` are `IS NULL` and `IS NOT NULL`.
+-   To select the books for which translators don't exist, we can run
+
+```sql
 SELECT "title", "translator"
 FROM "longlist"
 WHERE "translator" IS NULL;
 ```
 
--   Let’s try the reverse: selecting the books for which translators do exist.
+-   Let's try the reverse: selecting the books for which translators do exist.
 
-```
+```sql
 SELECT "title", "translator"
 FROM "longlist"
 WHERE "translator" IS NOT NULL;
@@ -256,15 +300,28 @@ WHERE "translator" IS NOT NULL;
 
 -   This keyword is used to select data that roughly matches the specified string. For example, `LIKE` could be used to select books that have a certain word or phrase in their title.
 -   `LIKE` is combined with the operators `%` (matches any characters around a given string) and `_` (matches a single character).
--   To select the books with the word “love” in their titles, we can run
 
+### General Syntax:
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE column_name LIKE pattern;
 ```
+
+**Wildcards:**
+- `%` - matches zero or more characters
+- `_` - matches exactly one character
+
+### Examples:
+-   To select the books with the word "love" in their titles, we can run
+
+```sql
 SELECT "title"
 FROM "longlist"
 WHERE "title" LIKE '%love%';
 ```
 
-`%` matches 0 or more characters, so this query would match book titles that have 0 or more characters before and after “love” — that is, titles that contain “love”.
+`%` matches 0 or more characters, so this query would match book titles that have 0 or more characters before and after "love" — that is, titles that contain "love".
 
 -   To select the books whose title begin with “The”, we can run
 
@@ -319,9 +376,25 @@ WHERE "title" LIKE 'T____';
 
 ## [Ranges](https://cs50.harvard.edu/sql/notes/0/#ranges)
 
--   We can also use the operators `<`, `>`, `<=` and `>=` in our conditions to match a range of values. For example, to select all the books longlisted between the years 2019 and 2022 (inclusive), we can run
+-   We can also use the operators `<`, `>`, `<=` and `>=` in our conditions to match a range of values.
 
+### General Syntax:
+```sql
+-- Using comparison operators
+SELECT column1, column2, ...
+FROM table_name
+WHERE column_name >= value1 AND column_name <= value2;
+
+-- Using BETWEEN (inclusive)
+SELECT column1, column2, ...
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
 ```
+
+### Examples:
+For example, to select all the books longlisted between the years 2019 and 2022 (inclusive), we can run
+
+```sql
 SELECT "title", "author"
 FROM "longlist"
 WHERE "year" >= 2019 AND "year" <= 2022;
@@ -329,7 +402,7 @@ WHERE "year" >= 2019 AND "year" <= 2022;
 
 -   Another way to get the same results is using the keywords `BETWEEN` and `AND` to specify inclusive ranges. We can run
 
-```
+```sql
 SELECT "title", "author"
 FROM "longlist"
 WHERE "year" BETWEEN 2019 AND 2022;
@@ -368,9 +441,29 @@ WHERE "pages" < 300;
 ## [`ORDER BY`](https://cs50.harvard.edu/sql/notes/0/#order-by)
 
 -   The `ORDER BY` keyword allows us to organize the returned rows in some specified order.
+
+### General Syntax:
+```sql
+-- Ascending order (default)
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column_name ASC;
+
+-- Descending order
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column_name DESC;
+
+-- Multiple columns
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1 DESC, column2 ASC;
+```
+
+### Examples:
 -   The following query selects the bottom 10 books in our database by rating.
 
-```
+```sql
 SELECT "title", "rating"
 FROM "longlist"
 ORDER BY "rating" LIMIT 10;
@@ -379,7 +472,7 @@ ORDER BY "rating" LIMIT 10;
 -   Note that we get the bottom 10 books because `ORDER BY` chooses ascending order by default.
 -   Instead, to select the top 10 books
 
-```
+```sql
 SELECT "title", "rating"
 FROM "longlist"
 ORDER BY "rating" DESC LIMIT 10;
@@ -413,23 +506,49 @@ ORDER BY "title";
 ## [Aggregate Functions](https://cs50.harvard.edu/sql/notes/0/#aggregate-functions)
 
 -   `COUNT`, `AVG`, `MIN`, `MAX`, and `SUM` are called aggregate functions and allow us to perform the corresponding operations over multiple rows of data. By their very nature, each of the following aggregate functions will return only a single output—the aggregated value.
+
+### General Syntax:
+```sql
+-- Count rows
+SELECT COUNT(column_name) FROM table_name;
+SELECT COUNT(*) FROM table_name;
+SELECT COUNT(DISTINCT column_name) FROM table_name;
+
+-- Average value
+SELECT AVG(column_name) FROM table_name;
+
+-- Minimum value
+SELECT MIN(column_name) FROM table_name;
+
+-- Maximum value
+SELECT MAX(column_name) FROM table_name;
+
+-- Sum of values
+SELECT SUM(column_name) FROM table_name;
+
+-- With alias
+SELECT aggregate_function(column_name) AS alias_name
+FROM table_name;
+```
+
+### Examples:
 -   To find the average rating of all books in the database
 
-```
+```sql
 SELECT AVG("rating")
 FROM "longlist";
 ```
 
 -   To round the average rating to 2 decimal points
 
-```
+```sql
 SELECT ROUND(AVG("rating"), 2)
 FROM "longlist";
 ```
 
 -   To rename the column in which the results are displayed
 
-```
+```sql
 SELECT ROUND(AVG("rating"), 2) AS "average rating"
 FROM "longlist";
 ```
