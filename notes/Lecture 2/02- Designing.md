@@ -96,7 +96,28 @@ Here, we see that every rider must visit at least one station to be considered a
 
 ## [`CREATE TABLE`](https://cs50.harvard.edu/sql/notes/2/\#create-table)
 
-- Now that we have the schema for two of the tables, let’s go ahead and create the tables.
+- Now that we have the schema for two of the tables, let's go ahead and create the tables.
+
+### General Syntax:
+```sql
+CREATE TABLE table_name (
+    column1 datatype [constraints],
+    column2 datatype [constraints],
+    ...
+    [table_constraints]
+);
+```
+
+**Common Constraints:**
+- `PRIMARY KEY` - Uniquely identifies each row
+- `NOT NULL` - Column cannot contain NULL
+- `UNIQUE` - All values must be unique
+- `DEFAULT value` - Default value if none provided
+- `FOREIGN KEY` - References another table
+- `CHECK (condition)` - Value must satisfy condition
+
+### Examples
+
 - Let us open up a new database called `mbta.db` — MBTA stands for Massachusetts Bay Transportation Authority and runs the Boston Subway.
 - If we run `.schema`, we will see nothing because no table has been created in this database yet.
 - In this database, we run the following command to create the first table for riders:

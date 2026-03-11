@@ -45,9 +45,30 @@
 
 ## [Inserting Data](https://cs50.harvard.edu/sql/notes/3/#inserting-data)
 
+### General Syntax:
+```sql
+-- Insert with all columns specified
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+
+-- Insert multiple rows
+INSERT INTO table_name (column1, column2, ...)
+VALUES 
+(value1a, value2a, ...),
+(value1b, value2b, ...),
+(value1c, value2c, ...);
+
+-- Insert from SELECT
+INSERT INTO table_name (column1, column2, ...)
+SELECT column1, column2, ...
+FROM another_table
+WHERE condition;
+```
+
+### Examples:
 -   The SQL statement `INSERT INTO` is used to insert a row of data into a given table.
 
-    ```
+    ```sql
     INSERT INTO "collections" ("id", "title", "accession_number", "acquired")
     VALUES (1, 'Profusion of flowers', '56.257', '1956-04-12');
     ```
@@ -215,9 +236,28 @@
 
 ## [Deleting Data](https://cs50.harvard.edu/sql/notes/3/#deleting-data)
 
--   We saw previously that running the following command deleted all rows from the table `collections`. (We don’t want to actually run this command now or we’ll lose all the data in the table!)
+### General Syntax:
+```sql
+-- Delete all rows from a table
+DELETE FROM table_name;
 
-    ```
+-- Delete rows matching a condition
+DELETE FROM table_name
+WHERE condition;
+
+-- Delete with subquery
+DELETE FROM table_name
+WHERE column_name = (
+    SELECT column_name
+    FROM another_table
+    WHERE condition
+);
+```
+
+### Examples:
+-   We saw previously that running the following command deleted all rows from the table `collections`. (We don't want to actually run this command now or we'll lose all the data in the table!)
+
+    ```sql
     DELETE FROM "collections";
     ```
 
@@ -329,7 +369,29 @@
 
 ## [Updating Data](https://cs50.harvard.edu/sql/notes/3/#updating-data)
 
--   We can easily imagine scenarios in which data in a database would need to be updated. Perhaps, in the case of the MFA database, we find out that the painting “Farmers working at dawn” originally mapped to an “Unidentified artist” was actually created by the artist Li Yin.
+### General Syntax:
+```sql
+-- Update all rows
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...;
+
+-- Update rows matching a condition
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+-- Update with subquery
+UPDATE table_name
+SET column_name = (
+    SELECT column_name
+    FROM another_table
+    WHERE condition
+)
+WHERE condition;
+```
+
+### Examples:
+-   We can easily imagine scenarios in which data in a database would need to be updated. Perhaps, in the case of the MFA database, we find out that the painting "Farmers working at dawn" originally mapped to an "Unidentified artist" was actually created by the artist Li Yin.
 -   We can use the update command to make changes to say, the affiliation of a painting. Here is the syntax of the update command.
 
     !["Update command syntax"](https://cs50.harvard.edu/sql/notes/3/images/49.jpg)
@@ -358,7 +420,35 @@
 -   A **trigger** is a SQL statement that runs automatically in response to another SQL statement, such as an `INSERT`, `UPDATE`, or `DELETE`.
 -   Triggers are useful for maintaining data consistency and automating tasks across related tables.
 
-### [Creating a “Sell” Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-sell-trigger)
+### General Syntax:
+```sql
+-- Basic trigger syntax
+CREATE TRIGGER trigger_name
+[BEFORE|AFTER|INSTEAD OF] [INSERT|UPDATE|DELETE]
+ON table_name
+BEGIN
+    -- SQL statements
+END;
+
+-- Trigger with conditional logic
+CREATE TRIGGER trigger_name
+[BEFORE|AFTER] [INSERT|UPDATE|DELETE]
+ON table_name
+WHEN condition
+BEGIN
+    -- SQL statements using OLD.column_name or NEW.column_name
+END;
+```
+
+**Special Keywords:**
+- `OLD.column_name` - Access columns from the row being deleted or updated
+- `NEW.column_name` - Access columns from the row being inserted or updated
+- `BEFORE` - Trigger runs before the operation
+- `AFTER` - Trigger runs after the operation
+
+### Examples:
+
+### [Creating a "Sell" Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-sell-trigger)
 
 -   Consider the MFA database with a `collections` table and a new `transactions` table.
 
@@ -387,7 +477,7 @@
 -   `OLD."title"` accesses the title column of the row about to be deleted.
 -   The trigger automatically inserts a record into `transactions` with the action “sold”.
 
-### [Creating a “Buy” Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-buy-trigger)
+### [Creating a "Buy" Trigger](https://cs50.harvard.edu/sql/notes/3/#creating-a-buy-trigger)
 
 -   When artwork is bought (inserted into `collections`), we want it logged in `transactions` with an action of “bought”.
 
