@@ -252,35 +252,373 @@ EXECUTE `balance_check` USING @id;
 
 ---
 
-## 🔧 Programming Constructs in MySQL
+## 📖 Complete SQL Syntax Reference
 
-MySQL supports common programming constructs in stored procedures:
+### MySQL Connection
+```bash
+# Connect to MySQL
+mysql -u username -h hostname -P port -p
 
-- `IF/THEN/ELSE` - Conditional logic
-- `CASE` - Switch statements
-- `LOOP`, `WHILE`, `REPEAT` - Iteration
-- Variables and parameters
-- Error handling
+# Example
+mysql -u root -h 127.0.0.1 -P 3306 -p
+```
+
+### MySQL Data Types
+```sql
+-- Integer types
+TINYINT      -- 1 byte (-128 to 127)
+SMALLINT     -- 2 bytes (-32,768 to 32,767)
+MEDIUMINT    -- 3 bytes
+INT          -- 4 bytes (-2 billion to 2 billion)
+BIGINT       -- 8 bytes
+
+-- Unsigned integers (0 to positive max)
+INT UNSIGNED
+BIGINT UNSIGNED
+
+-- Auto-increment
+id INT AUTO_INCREMENT
+
+-- Text types
+CHAR(n)      -- Fixed length
+VARCHAR(n)   -- Variable length
+TEXT         -- Up to 65,535 characters
+MEDIUMTEXT   -- Up to 16 MB
+LONGTEXT     -- Up to 4 GB
+ENUM('val1', 'val2')  -- Predefined options
+SET('val1', 'val2')   -- Multiple options allowed
+
+-- Date/Time types
+DATE         -- YYYY-MM-DD
+TIME         -- HH:MM:SS
+DATETIME     -- YYYY-MM-DD HH:MM:SS
+TIMESTAMP    -- Unix timestamp
+YEAR         -- YYYY
+
+-- Numeric types
+FLOAT        -- 4 bytes
+DOUBLE       -- 8 bytes
+DECIMAL(M,D) -- Fixed precision (M digits, D after decimal)
+
+-- Binary
+BLOB         -- Binary data
+```
+
+### MySQL CREATE TABLE
+```sql
+CREATE TABLE `table_name` (
+    `id` INT AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) UNIQUE,
+    `status` ENUM('active', 'inactive') DEFAULT 'active',
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `amount` DECIMAL(10,2),
+    PRIMARY KEY(`id`),
+    INDEX `idx_email` (`email`)
+);
+```
+
+### MySQL ALTER TABLE
+```sql
+-- Add column
+ALTER TABLE `table_name` ADD COLUMN `column_name` datatype;
+
+-- Modify column (change type/constraints)
+ALTER TABLE `table_name` MODIFY `column_name` new_datatype;
+
+-- Change column name and type
+ALTER TABLE `table_name` CHANGE `old_name` `new_name` datatype;
+
+-- Drop column
+ALTER TABLE `table_name` DROP COLUMN `column_name`;
+
+-- Add index
+ALTER TABLE `table_name` ADD INDEX `index_name` (`column_name`);
+
+-- Add foreign key
+ALTER TABLE `table_name` 
+ADD CONSTRAINT `fk_name` 
+FOREIGN KEY (`column`) REFERENCES `other_table`(`id`);
+```
+
+### MySQL Stored Procedures
+```sql
+-- Change delimiter (needed for procedures)
+DELIMITER //
+
+-- Create procedure
+CREATE PROCEDURE procedure_name(IN param1 INT, OUT param2 VARCHAR(255))
+BEGIN
+    -- SQL statements
+    SELECT column INTO param2 FROM table WHERE id = param1;
+END//
+
+-- Reset delimiter
+DELIMITER ;
+
+-- Call procedure
+CALL procedure_name(5, @result);
+SELECT @result;
+
+-- Drop procedure
+DROP PROCEDURE IF EXISTS procedure_name;
+```
+
+### PostgreSQL Connection
+```bash
+# Connect to PostgreSQL
+psql postgresql://username@hostname:port/database
+
+# Example
+psql postgresql://postgres@127.0.0.1:5432/postgres
+```
+
+### PostgreSQL Data Types
+```sql
+-- Integer types
+SMALLINT     -- 2 bytes
+INTEGER      -- 4 bytes
+BIGINT       -- 8 bytes
+SERIAL       -- Auto-incrementing INTEGER
+BIGSERIAL    -- Auto-incrementing BIGINT
+
+-- Text types
+VARCHAR(n)   -- Variable length
+TEXT         -- Unlimited length
+CHAR(n)      -- Fixed length
+
+-- Numeric types
+NUMERIC(precision, scale)  -- Exact decimal
+REAL         -- 4 bytes floating point
+DOUBLE PRECISION  -- 8 bytes floating point
+
+-- Date/Time
+DATE
+TIME
+TIMESTAMP
+INTERVAL     -- Time duration
+
+-- Boolean
+BOOLEAN      -- TRUE/FALSE
+
+-- Arrays (PostgreSQL-specific)
+INTEGER[]
+TEXT[]
+
+-- JSON (PostgreSQL-specific)
+JSON
+JSONB        -- Binary JSON (faster)
+
+-- UUID
+UUID
+```
+
+### PostgreSQL CREATE TABLE
+```sql
+CREATE TABLE "table_name" (
+    "id" SERIAL,
+    "name" VARCHAR(255) NOT NULL,
+    "email" VARCHAR(255) UNIQUE,
+    "status" VARCHAR(20) DEFAULT 'active',
+    "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "data" JSONB,
+    PRIMARY KEY("id")
+);
+
+-- With custom ENUM type
+CREATE TYPE "status_type" AS ENUM ('active', 'inactive', 'pending');
+
+CREATE TABLE "users" (
+    "id" SERIAL,
+    "status" status_type DEFAULT 'pending',
+    PRIMARY KEY("id")
+);
+```
+
+### PostgreSQL Specific Features
+```sql
+-- RETURNING clause (get inserted/updated data back)
+INSERT INTO users (name, email)
+VALUES ('John', 'john@example.com')
+RETURNING id, created_at;
+
+UPDATE users SET status = 'active'
+WHERE id = 5
+RETURNING *;
+
+-- Array operations
+SELECT * FROM table_name WHERE tags @> ARRAY['sql', 'database'];
+
+-- JSON operations
+SELECT data->>'name' AS name FROM table_name;
+SELECT * FROM table_name WHERE data @> '{"status": "active"}';
+
+-- Window functions (advanced)
+SELECT name, salary,
+       AVG(salary) OVER (PARTITION BY department) AS dept_avg
+FROM employees;
+```
+
+### Access Control
+```sql
+-- MySQL/PostgreSQL user management
+
+-- Create user
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+
+-- Grant privileges
+GRANT SELECT, INSERT, UPDATE ON database.table TO 'username'@'localhost';
+GRANT ALL PRIVILEGES ON database.* TO 'username'@'localhost';
+
+-- Revoke privileges
+REVOKE INSERT, UPDATE ON database.table FROM 'username'@'localhost';
+
+-- Show grants
+SHOW GRANTS FOR 'username'@'localhost';
+
+-- Drop user
+DROP USER 'username'@'localhost';
+
+-- PostgreSQL specific
+CREATE ROLE role_name WITH LOGIN PASSWORD 'password';
+GRANT SELECT ON TABLE table_name TO role_name;
+```
+
+### SQL Injection Prevention
+```sql
+-- ❌ VULNERABLE (Never do this!)
+query = "SELECT * FROM users WHERE username = '" + input + "'";
+
+-- ✅ SAFE: Use parameterized queries (prepared statements)
+-- In application code, use placeholders:
+
+-- Java/JDBC
+PreparedStatement stmt = conn.prepareStatement(
+    "SELECT * FROM users WHERE username = ?"
+);
+stmt.setString(1, userInput);
+
+-- Python
+cursor.execute("SELECT * FROM users WHERE username = %s", (user_input,))
+
+-- Node.js
+db.query("SELECT * FROM users WHERE username = ?", [userInput]);
+
+-- PHP PDO
+$stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+$stmt->execute(['username' => $userInput]);
+```
+
+### Database Replication (Conceptual)
+```sql
+-- Single-leader replication
+-- - One leader (primary) handles all writes
+-- - Followers (replicas) replicate data
+-- - Followers handle read queries
+
+-- Configure as leader (MySQL example)
+-- In my.cnf:
+[mysqld]
+server-id = 1
+log_bin = /var/log/mysql/mysql-bin.log
+
+-- Configure as follower
+[mysqld]
+server-id = 2
+relay-log = /var/log/mysql/mysql-relay-bin
+```
+
+### Sharding (Conceptual)
+```sql
+-- Horizontal partitioning across servers
+
+-- Example: User sharding by ID range
+-- Server 1: Users with ID 1-1,000,000
+-- Server 2: Users with ID 1,000,001-2,000,000
+-- Server 3: Users with ID 2,000,001-3,000,000
+
+-- Application logic determines which server to query
+user_id = 1,500,000
+server_num = (user_id // 1,000,000) + 1  -- Server 2
+
+-- Hash-based sharding
+server_num = hash(user_id) % number_of_servers
+```
+
+### MySQL vs PostgreSQL vs SQLite Comparison
+```sql
+-- Auto-increment
+SQLite:     INTEGER PRIMARY KEY  -- Implicit AUTOINCREMENT
+MySQL:      INT AUTO_INCREMENT
+PostgreSQL: SERIAL or GENERATED ALWAYS AS IDENTITY
+
+-- String concatenation
+SQLite:     'Hello' || ' ' || 'World'
+MySQL:      CONCAT('Hello', ' ', 'World')
+PostgreSQL: 'Hello' || ' ' || 'World'
+
+-- Limit/Offset
+SQLite:     LIMIT 10 OFFSET 20
+MySQL:      LIMIT 10 OFFSET 20  or  LIMIT 20, 10
+PostgreSQL: LIMIT 10 OFFSET 20
+
+-- Date functions
+SQLite:     DATE('now')
+MySQL:      NOW(), CURDATE(), CURTIME()
+PostgreSQL: NOW(), CURRENT_DATE, CURRENT_TIME
+
+-- String matching
+SQLite:     column LIKE '%pattern%'
+MySQL:      column LIKE '%pattern%'  or  column REGEXP 'pattern'
+PostgreSQL: column LIKE '%pattern%'  or  column ~ 'pattern'
+```
 
 ---
 
-## 🌐 When to Use What
+## 💡 Best Practices for Scaling
 
-**SQLite:**
-- Small applications
-- Mobile apps
-- Prototyping
-- Single-user scenarios
+### When to Use Each Database
+| Database | Best For |
+|----------|----------|
+| **SQLite** | Single-user apps, mobile apps, prototyping |
+| **MySQL** | Web applications, read-heavy workloads |
+| **PostgreSQL** | Complex queries, data integrity, write-heavy |
 
-**MySQL:**
-- Web applications
-- Read-heavy workloads
-- E-commerce sites
-- Content management systems
+### Replication Strategies
+1. **Single-leader** - Simple, most common
+2. **Multi-leader** - Complex, for multi-datacenter
+3. **Leaderless** - High availability, eventual consistency
 
-**PostgreSQL:**
-- Complex applications
-- Write-heavy workloads
-- Data analytics
-- Applications requiring advanced features
+### Sharding Considerations
+- **Pros:** Handle massive data, distribute load
+- **Cons:** Complex queries, joins across shards difficult
+- **Key:** Choose good shard key (even distribution)
 
+### Security Best Practices
+1. **Always use prepared statements** - Prevent SQL injection
+2. **Principle of least privilege** - Grant minimal permissions
+3. **Never store passwords in plain text** - Use bcrypt/scrypt
+4. **Validate input** - Application-level validation
+5. **Use SSL/TLS** - Encrypt database connections
+6. **Regular backups** - Test restore procedures
+7. **Monitor access logs** - Detect suspicious activity
+
+---
+
+## ⚠️ Common Scaling Pitfalls
+
+- Not planning for growth early
+- Ignoring connection pooling
+- Not monitoring query performance
+- Over-complicating with premature sharding
+- Ignoring security until it's too late
+- Not testing failover procedures
+- Forgetting to backup before major changes
+
+---
+
+## 🧑‍💻 Author
+
+**Omar Abdullah**  
+Backend Developer (Java)  
+Learning database scaling with Harvard CS50 SQL
