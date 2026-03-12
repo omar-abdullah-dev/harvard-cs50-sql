@@ -19,7 +19,8 @@ harvard-cs50-sql/
 │   ├── lecture 2 - Designing.pdf
 │   ├── lecture 3 - Writing.pdf
 │   ├── lecture 4 - Viewing.pdf
-│   └── lecture 5 - Optimizing.pdf
+│   ├── lecture 5 - Optimizing.pdf
+│   └── lecture 6 - Scaling.pdf
 │
 ├── 📝 Lectures Quick view/     # Quick reference summaries
 │   ├── 0- Querying.md
