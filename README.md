@@ -123,7 +123,7 @@ Each lecture is represented across:
 - `problems/Lecture 3 - Writing/`: dont-panic, meteorites
 - `problems/Lecture 4 - Viewing/`: bnb, census, private (The Private Eye)
 - `problems/Lecture 5 - Optimizing/`: snap
-- `problems/sentimental-connect/schema.sql`: standalone schema practice file
+- `problems/sentimental-connect/schema.sql`: standalone schema practice file with 6 tables (`users`, `schools`, `companies`, `connections`, `education`, `employment`)
 
 ## How to study with this repo
 
@@ -151,7 +151,7 @@ You can switch the `.open` and `.read` paths for any database/query file in this
 
 - File names are documented as they currently exist in the repository.
 - `Lectures Quick view/2- Desiging.md` keeps the existing on-disk spelling.
-- `problems/sentimental-connect/schema.sql` is currently a partial draft schema.
+- `problems/sentimental-connect/schema.sql` currently defines 6 tables: `users`, `schools`, `companies`, `connections`, `education`, `employment`.
 
 ## Author
 
