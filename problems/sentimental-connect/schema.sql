@@ -19,7 +19,7 @@ CREATE TABLE `schools`(
 CREATE TABLE `companies` (
      `id` INT UNSIGNED AUTO_INCREMENT,
      `name` VARCHAR (64) NOT NULL ,
-     `industry` ENUM(`Education`,`Business`,`Technology`) NOT NULL,
+     `industry` ENUM('Education','Business','Technology') NOT NULL,
     `location` VARCHAR(100) NOT NULL,
     PRIMARY KEY (`id`)
 );
