@@ -11,7 +11,7 @@ CREATE TABLE `schools`(
       `id` INT UNSIGNED AUTO_INCREMENT,
       `name`VARCHAR(100) NOT NULL,
       `type`ENUM('Primary', 'Secondary', 'Higher Education') NOT NULL,
-    `location`VARCHAR(100) NOT NULL,
+    `location` VARCHAR(100) NOT NULL,
     `founded`Year,
     PRIMARY KEY (`id`)
 );
