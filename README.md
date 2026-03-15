@@ -288,6 +288,49 @@ Replace `.open` and `.read` paths for any database/query combination in this rep
 
 ---
 
+## 🎓 End of Course — CS50 SQL Complete
+
+All 7 lectures of **Harvard CS50's Introduction to Databases with SQL** have been completed.
+
+### What was covered
+
+| Lecture | Topic | Status |
+|---------|-------|--------|
+| Lecture 0 | Querying | ✅ Complete |
+| Lecture 1 | Relating | ✅ Complete |
+| Lecture 2 | Designing | ✅ Complete |
+| Lecture 3 | Writing | ✅ Complete |
+| Lecture 4 | Viewing | ✅ Complete |
+| Lecture 5 | Optimizing | ✅ Complete |
+| Lecture 6 | Scaling | ✅ Complete |
+
+### Skills acquired
+
+- Writing complex SQL queries across SQLite, MySQL, and PostgreSQL
+- Designing normalised relational schemas with proper keys and constraints
+- Reading and writing data safely using transactions and triggers
+- Building views, CTEs, and security layers over raw tables
+- Optimising queries with indexes and execution plans (`EXPLAIN QUERY PLAN`)
+- Scaling databases: replication models, sharding, access control
+- Connecting to a database from Java using **JDBC + PreparedStatement**
+- Preventing SQL injection at the driver level
+
+### What comes next — Spring backend path
+
+```
+CS50 SQL (done ✅)
+        ↓
+Spring JDBC  →  JdbcTemplate, NamedParameterJdbcTemplate
+        ↓
+Spring Data JPA  →  @Entity, @Repository, JPQL, @Query
+        ↓
+Schema Migrations  →  Flyway / Liquibase
+        ↓
+Production  →  HikariCP pool, read-replica routing, slow-query logs
+```
+
+---
+
 ## Author
 
 Omar Abdullah Moharam
