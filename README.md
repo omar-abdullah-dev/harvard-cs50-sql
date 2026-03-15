@@ -10,6 +10,7 @@ It combines lecture notes, quick-review summaries, practice queries, problem-set
 - Detailed lecture notes in `notes/`
 - Topic-based SQL query examples in `queries/`
 - Problem-set work in `problems/`
+- Lecture 6 problem sets (`deep`, `dont-panic-java`, `sentimental-connect`)
 - Database/schema assets in `schemas/` and problem folders
 - Official/companion course files in `Source Code/`
 
@@ -61,15 +62,18 @@ harvard-cs50-sql/
 |   |-- Lecture 3 - Writing/
 |   |-- Lecture 4 - Viewing/
 |   |-- Lecture 5 - Optimizing/
-|   `-- sentimental-connect/
-|       `-- schema.sql
+|   `-- Lecture 6 - Scaling/
+|       |-- deep/
+|       |-- dont-panic-java/
+|       `-- sentimental-connect/
 |-- schemas/
 |   |-- Lecture 0/
 |   |-- Lecture 1/
 |   |-- Lecture 2/
 |   |-- Lecture 3/
 |   |-- Lecture 4/
-|   `-- Lecture 5/
+|   |-- Lecture 5/
+|   `-- Lecture 6/
 |-- Source Code/
 |   |-- 0-Querying/
 |   |-- 1-Relating/
@@ -123,7 +127,7 @@ Each lecture is represented across:
 - `problems/Lecture 3 - Writing/`: dont-panic, meteorites
 - `problems/Lecture 4 - Viewing/`: bnb, census, private (The Private Eye)
 - `problems/Lecture 5 - Optimizing/`: snap
-- `problems/sentimental-connect/schema.sql`: standalone schema practice file with 6 tables (`users`, `schools`, `companies`, `connections`, `education`, `employment`)
+- `problems/Lecture 6 - Scaling/`: deep, dont-panic-java, sentimental-connect
 
 ## How to study with this repo
 
@@ -151,7 +155,7 @@ You can switch the `.open` and `.read` paths for any database/query file in this
 
 - File names are documented as they currently exist in the repository.
 - `Lectures Quick view/2- Desiging.md` keeps the existing on-disk spelling.
-- `problems/sentimental-connect/schema.sql` currently defines 6 tables: `users`, `schools`, `companies`, `connections`, `education`, `employment`.
+- `problems/Lecture 6 - Scaling/sentimental-connect/schema.sql` currently defines 6 tables: `users`, `schools`, `companies`, `connections`, `education`, `employment`.
 
 ## Author
 
@@ -159,4 +163,4 @@ Omar Abdullah Moharam
 
 ## Last updated
 
-March 13, 2026
+March 15, 2026
