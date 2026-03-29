@@ -12,6 +12,7 @@ It combines lecture notes, quick-review summaries, practice queries, problem-set
 - Detailed lecture notes in `notes/`
 - Topic-based SQL query examples in `queries/`
 - Problem-set solutions in `problems/`
+- Final project scaffold in `Final Project/` (`DESIGN.md`, `schema.sql`, `queries.sql`)
 - **Java + JDBC hands-on code** in `problems/Lecture 6 - Scaling/dont-panic-java/`
 - Database/schema assets in `schemas/` and problem folders
 - Official/companion course files in `Source Code/`
@@ -24,6 +25,10 @@ It combines lecture notes, quick-review summaries, practice queries, problem-set
 ```text
 harvard-cs50-sql/
 |-- README.md
+|-- Final Project/
+|   |-- DESIGN.md              ← final project design template
+|   |-- schema.sql             ← schema draft file
+|   `-- queries.sql            ← query workflow draft file
 |-- Lecture Slides/
 |   |-- lecture 0 - Querying.pdf
 |   |-- lecture 1 - Relating.pdf
@@ -150,7 +155,7 @@ Each lecture is covered across:
 | `sets/` | `UNION`, `INTERSECT`, `EXCEPT` |
 | `designing/` | `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`, primary/foreign keys, constraints |
 | `writing/` | INSERT / UPDATE / DELETE, triggers, transactions + README |
-| `views/` | Basic & aggregate views, CTEs, security views, soft deletions, view management + README |
+| `views/` | Basic & aggregate views, CTEs, security views, soft deletions, view management + README + L4 summary |
 | `optimizing/` | Indexes, `EXPLAIN QUERY PLAN`, timing, transactions, locking, VACUUM + README + SUMMARY |
 | `scaling/` | MySQL & PostgreSQL setup, data types, MBTA schema variants, stored procedures, replication, access control, SQL injection prevention + README |
 
@@ -291,6 +296,7 @@ Replace `.open` and `.read` paths for any database/query combination in this rep
 ## 🎓 End of Course — CS50 SQL Complete
 
 All 7 lectures of **Harvard CS50's Introduction to Databases with SQL** have been completed.
+The `Final Project/` folder currently contains the official scaffold/template files for the capstone.
 
 ### What was covered
 
@@ -337,4 +343,4 @@ Omar Abdullah Moharam
 
 ## Last updated
 
-March 15, 2026
+March 29, 2026
